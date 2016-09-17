@@ -18,6 +18,7 @@
 		CEE4532D1D8DD0E100E5968A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; };
 		CEE453301D8DD46B00E5968A /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEE453321D8DDFFB00E5968A /* DictionaryExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453311D8DDFFB00E5968A /* DictionaryExtensionTests.swift */; };
+		CEE453341D8DF82600E5968A /* PropertyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453331D8DF82600E5968A /* PropertyType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		CEE453291D8DCB6A00E5968A /* JSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtension.swift; sourceTree = "<group>"; };
 		CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensionTests.swift; sourceTree = "<group>"; };
 		CEE453311D8DDFFB00E5968A /* DictionaryExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionTests.swift; sourceTree = "<group>"; };
+		CEE453331D8DF82600E5968A /* PropertyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */,
+				CEE453331D8DF82600E5968A /* PropertyType.swift */,
 				CEE453271D8DC95E00E5968A /* JSONModel.swift */,
 				CEE453291D8DCB6A00E5968A /* JSONExtension.swift */,
 				CEE4530B1D8D801800E5968A /* Info.plist */,
@@ -254,6 +257,7 @@
 			files = (
 				CEE453281D8DC95E00E5968A /* JSONModel.swift in Sources */,
 				CEE4532A1D8DCB6A00E5968A /* JSONExtension.swift in Sources */,
+				CEE453341D8DF82600E5968A /* PropertyType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
