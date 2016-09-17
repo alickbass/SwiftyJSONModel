@@ -16,6 +16,7 @@
 		CEE4532A1D8DCB6A00E5968A /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453291D8DCB6A00E5968A /* JSONExtension.swift */; };
 		CEE4532C1D8DD06100E5968A /* JSONExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */; };
 		CEE4532D1D8DD0E100E5968A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; };
+		CEE453301D8DD46B00E5968A /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,16 @@
 			dstSubfolderSpec = 10;
 			files = (
 				CEE453261D8DC6F800E5968A /* SwiftyJSON.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE4532F1D8DD46700E5968A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CEE453301D8DD46B00E5968A /* SwiftyJSON.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +174,7 @@
 				CEE4530C1D8D801800E5968A /* Sources */,
 				CEE4530D1D8D801800E5968A /* Frameworks */,
 				CEE4530E1D8D801800E5968A /* Resources */,
+				CEE4532F1D8DD46700E5968A /* CopyFiles */,
 			);
 			buildRules = (
 			);
