@@ -55,6 +55,9 @@ class JSONExtensionTests: XCTestCase {
         XCTAssertThrowsError(try JSON("test").uuidStringValue(), "Non string should throw error") { error in
             XCTAssertEqual(error as? JSONModelError, .invalidUUIDString)
         }
+        
+        let uuidString = UUID().uuidString
+        XCTAssertEqual(try? JSON(uuidString).uuidStringValue(), uuidString)
     }
     
 }
