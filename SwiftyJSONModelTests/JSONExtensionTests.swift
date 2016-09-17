@@ -7,28 +7,53 @@
 //
 
 import XCTest
+import SwiftyJSON
+@testable import SwiftyJSONModel
 
 class JSONExtensionTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testJSONBoolValue() {
+        XCTAssertThrowsError(try JSON("test").boolValue(), "Non bool should throw error") { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        }
+        XCTAssertEqual(try? JSON(true).boolValue(), true)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testJSONIntValue() {
+        XCTAssertThrowsError(try JSON("test").intValue(), "Non int should throw error") { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        }
+        XCTAssertEqual(try? JSON(3).intValue(), 3)
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testJSONDoubleValue() {
+        XCTAssertThrowsError(try JSON("test").doubleValue(), "Non double should throw error") { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        }
+        XCTAssertEqual(try? JSON(3.0).doubleValue(), 3.0)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testJSONStringValue() {
+        XCTAssertThrowsError(try JSON(true).stringValue(), "Non string should throw error") { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        }
+        XCTAssertEqual(try? JSON("test").stringValue(), "test")
+    }
+    
+    func testJSONArrayValue() {
+        XCTAssertThrowsError(try JSON(true).arrayValue(), "Non array should throw error") { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        }
+        let json: [JSON] = ["Some"]
+        XCTAssertEqual(try! JSON(json).arrayValue(), json)
+    }
+    
+    func testUuidStringValue() {
+        XCTAssertThrowsError(try JSON(true).uuidStringValue(), "Non string should throw error") { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        }
+        XCTAssertThrowsError(try JSON("test").uuidStringValue(), "Non string should throw error") { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidUUIDString)
         }
     }
     
