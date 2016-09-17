@@ -7,30 +7,39 @@
 //
 
 import XCTest
+import SwiftyJSON
 @testable import SwiftyJSONModel
+
+struct FullName {
+    let firstName: String
+    let lastName: String
+}
+
+extension FullName: JSONModelType {
+    enum PropertyKey: String {
+        case firstName, lastName
+    }
+    
+    init(properties: [PropertyKey : JSON]) throws {
+        firstName = try properties.value(for: .firstName).stringValue()
+        lastName = try properties.value(for: .lastName).stringValue()
+    }
+    
+    var dictValue: [PropertyKey : JSON] {
+        return [.firstName: JSON(firstName), .lastName: JSON(lastName)]
+    }
+}
+
+extension FullName: Equatable {}
+func == (left: FullName, right: FullName) -> Bool {
+    return left.firstName == right.firstName && left.lastName == right.lastName
+}
 
 class SwiftyJSONModelTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testJSONModelProtocols() {
+        let name = FullName(firstName: "John", lastName: "Doe")
+        XCTAssertEqual(try? FullName(json: name.jsonValue), name)
     }
     
 }
