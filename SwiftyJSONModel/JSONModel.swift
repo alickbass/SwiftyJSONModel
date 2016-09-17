@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-enum JSONModelError: Error {
+public enum JSONModelError: Error {
     case jsonIsNotAnObject
     case unexpectedElement
     case elementAbsent
@@ -17,24 +17,24 @@ enum JSONModelError: Error {
     case invalidUUIDString
 }
 
-protocol PropertiesContaining {
+public protocol PropertiesContaining {
     associatedtype PropertyKey: RawRepresentable, Hashable
 }
 
-protocol JSONInitializable: PropertiesContaining {
+public protocol JSONInitializable: PropertiesContaining {
     init(json: JSON) throws
     init(properties: [PropertyKey: JSON]) throws
 }
 
-protocol JSONRepresentable: PropertiesContaining {
+public protocol JSONRepresentable: PropertiesContaining {
     var jsonValue: JSON { get }
     var dictValue: [PropertyKey: JSON] { get }
 }
 
-protocol JSONModelType: JSONInitializable, JSONRepresentable {}
+public protocol JSONModelType: JSONInitializable, JSONRepresentable {}
 
-extension JSONInitializable where PropertyKey.RawValue == String {
-    init(json: JSON) throws {
+public extension JSONInitializable where PropertyKey.RawValue == String {
+    public init(json: JSON) throws {
         guard let dictionary = json.dictionary else {
             throw JSONModelError.jsonIsNotAnObject
         }
