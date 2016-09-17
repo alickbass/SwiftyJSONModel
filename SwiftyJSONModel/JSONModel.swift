@@ -51,3 +51,13 @@ public extension JSONInitializable where PropertyKey.RawValue == String {
         try self.init(properties: properties)
     }
 }
+
+public extension JSONRepresentable where PropertyKey.RawValue == String {
+    public var jsonValue: JSON {
+        var dict = [String: JSON]()
+        for (key, value) in dictValue {
+            dict[key.rawValue] = value
+        }
+        return JSON(dict)
+    }
+}
