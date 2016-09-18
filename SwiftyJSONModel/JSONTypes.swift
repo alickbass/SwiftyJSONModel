@@ -13,22 +13,22 @@ public protocol JSONInitializable {
     init(json: JSON) throws
 }
 
-public protocol JSONRepresantable {
+public protocol JSONRepresentable {
     var jsonValue: JSON { get }
 }
 
-extension String: JSONRepresantable {
+extension String: JSONRepresentable {
     public var jsonValue: JSON { return JSON(self) }
 }
 
-extension Bool: JSONRepresantable {
+extension Bool: JSONRepresentable {
     public var jsonValue: JSON { return JSON(self) }
 }
 
-extension Int: JSONRepresantable {
+extension Int: JSONRepresentable {
     public var jsonValue: JSON { return JSON(self) }
 }
 
-extension Double: JSONRepresantable {
+extension Double: JSONRepresentable {
     public var jsonValue: JSON { return JSON(self) }
 }
