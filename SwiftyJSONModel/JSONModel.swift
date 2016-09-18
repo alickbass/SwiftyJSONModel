@@ -22,19 +22,18 @@ public protocol PropertiesContaining {
     associatedtype PropertyKey: RawRepresentable, Hashable
 }
 
-public protocol JSONInitializable: PropertiesContaining {
-    init(json: JSON) throws
+public protocol JSONObjectInitializable: PropertiesContaining, JSONInitializable {
     init(properties: [PropertyKey: JSON]) throws
 }
 
-public protocol JSONRepresentable: PropertiesContaining {
-    var jsonValue: JSON { get }
-    var dictValue: [PropertyKey: JSON] { get }
+public protocol JSONObjectRepresentable: PropertiesContaining, JSONRepresentable {
+    var jsonDictValue: [PropertyKey: JSON] { get }
+    var dictValue: [PropertyKey: JSONRepresentable] { get }
 }
 
-public protocol JSONModelType: JSONInitializable, JSONRepresentable {}
+public protocol JSONModelType: JSONObjectInitializable, JSONObjectRepresentable {}
 
-public extension JSONInitializable where PropertyKey.RawValue == String {
+public extension JSONObjectInitializable where PropertyKey.RawValue == String {
     public init(json: JSON) throws {
         guard let dictionary = json.dictionary else {
             throw JSONModelError.jsonIsNotAnObject
@@ -53,10 +52,18 @@ public extension JSONInitializable where PropertyKey.RawValue == String {
     }
 }
 
-public extension JSONRepresentable where PropertyKey.RawValue == String {
+public extension JSONObjectRepresentable where PropertyKey.RawValue == String {
+    public var jsonDictValue: [PropertyKey: JSON] {
+        var dict = [PropertyKey: JSON]()
+        for (key, value) in dictValue {
+            dict[key] = value.jsonValue
+        }
+        return dict
+    }
+    
     public var jsonValue: JSON {
         var dict = [String: JSON]()
-        for (key, value) in dictValue {
+        for (key, value) in jsonDictValue {
             dict[key.rawValue] = value
         }
         return JSON(dict)
