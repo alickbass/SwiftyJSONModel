@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 
 public enum JSONModelError: Error {
+    case invalidJSON
     case jsonIsNotAnObject
     case unexpectedElement
     case elementAbsent
