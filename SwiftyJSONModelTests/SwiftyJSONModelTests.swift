@@ -10,36 +10,43 @@ import XCTest
 import SwiftyJSON
 @testable import SwiftyJSONModel
 
-struct FullName {
+struct Person {
     let firstName: String
     let lastName: String
+    let age: Int
+    let isMarried: Bool
+    let height: Double
 }
 
-extension FullName: JSONModelType {
+extension Person: JSONModelType {
     enum PropertyKey: String {
-        case firstName, lastName
+        case firstName, lastName, age, isMarried, height
     }
     
     init(properties: [PropertyKey : JSON]) throws {
         firstName = try properties.value(for: .firstName).stringValue()
         lastName = try properties.value(for: .lastName).stringValue()
+        age = try properties.value(for: .age).intValue()
+        isMarried = try properties.value(for: .isMarried).boolValue()
+        height = try properties.value(for: .height).doubleValue()
     }
     
-    var dictValue: [PropertyKey : JSON] {
-        return [.firstName: JSON(firstName), .lastName: JSON(lastName)]
+    var dictValue: [PropertyKey : JSONRepresentable] {
+        return [.firstName: firstName, .lastName: lastName, .age: age, .isMarried: isMarried, .height: height]
     }
 }
 
-extension FullName: Equatable {}
-func == (left: FullName, right: FullName) -> Bool {
-    return left.firstName == right.firstName && left.lastName == right.lastName
+extension Person: Equatable {}
+func == (left: Person, right: Person) -> Bool {
+    return left.firstName == right.firstName && left.lastName == right.lastName &&
+           left.age == right.age && left.isMarried == right.isMarried && left.height == right.height
 }
 
 class SwiftyJSONModelTests: XCTestCase {
     
     func testJSONModelProtocols() {
-        let name = FullName(firstName: "John", lastName: "Doe")
-        XCTAssertEqual(try? FullName(json: name.jsonValue), name)
+        let person = Person(firstName: "John", lastName: "Doe", age: 21, isMarried: false, height: 180)
+        XCTAssertEqual(try? Person(json: person.jsonValue), person)
     }
     
 }
