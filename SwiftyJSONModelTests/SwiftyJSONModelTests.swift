@@ -47,6 +47,12 @@ class SwiftyJSONModelTests: XCTestCase {
     func testJSONModelProtocols() {
         let person = Person(firstName: "John", lastName: "Doe", age: 21, isMarried: false, height: 180)
         XCTAssertEqual(try? Person(json: person.jsonValue), person)
+        XCTAssertThrowsError(try Person(json: JSON("test")), "Initialization with not an object should fail") { error in
+            XCTAssertEqual(error as? JSONModelError, .jsonIsNotAnObject)
+        }
+        XCTAssertThrowsError(try Person(json: JSON(["firstName": "John", "weight": 80])), "Initialization with unexpexted properties should fail") { error in
+            XCTAssertEqual(error as? JSONModelError, .unexpectedElement)
+        }
     }
     
 }
