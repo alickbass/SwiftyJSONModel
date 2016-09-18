@@ -17,4 +17,18 @@ public protocol JSONRepresantable {
     var jsonValue: JSON { get }
 }
 
+extension String: JSONRepresantable {
+    public var jsonValue: JSON { return JSON(self) }
+}
 
+extension Bool: JSONRepresantable {
+    public var jsonValue: JSON { return JSON(self) }
+}
+
+extension Int: JSONRepresantable {
+    public var jsonValue: JSON { return JSON(self) }
+}
+
+extension Double: JSONRepresantable {
+    public var jsonValue: JSON { return JSON(self) }
+}
