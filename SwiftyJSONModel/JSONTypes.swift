@@ -17,6 +17,30 @@ public protocol JSONRepresentable {
     var jsonValue: JSON { get }
 }
 
+extension String: JSONInitializable {
+    public init(json: JSON) throws {
+        self = try json.stringValue()
+    }
+}
+
+extension Bool: JSONInitializable {
+    public init(json: JSON) throws {
+        self = try json.boolValue()
+    }
+}
+
+extension Int: JSONInitializable {
+    public init(json: JSON) throws {
+        self = try json.intValue()
+    }
+}
+
+extension Double: JSONInitializable {
+    public init(json: JSON) throws {
+        self = try json.doubleValue()
+    }
+}
+
 extension String: JSONRepresentable {
     public var jsonValue: JSON { return JSON(self) }
 }
