@@ -20,7 +20,7 @@
 		CEE453321D8DDFFB00E5968A /* DictionaryExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453311D8DDFFB00E5968A /* DictionaryExtensionTests.swift */; };
 		CEE453361D8DF9F900E5968A /* JSONTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453351D8DF9F900E5968A /* JSONTypes.swift */; };
 		CEF8147D1D9055C000003F2F /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147C1D9055C000003F2F /* JSONObject.swift */; };
-		CEF8147F1D905D4F00003F2F /* JSONObjectTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147E1D905D4F00003F2F /* JSONObjectTypeTests.swift */; };
+		CEF8147F1D905D4F00003F2F /* JSONObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +70,7 @@
 		CEE453311D8DDFFB00E5968A /* DictionaryExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionTests.swift; sourceTree = "<group>"; };
 		CEE453351D8DF9F900E5968A /* JSONTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTypes.swift; sourceTree = "<group>"; };
 		CEF8147C1D9055C000003F2F /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
-		CEF8147E1D905D4F00003F2F /* JSONObjectTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObjectTypeTests.swift; sourceTree = "<group>"; };
+		CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObjectTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */,
-				CEF8147E1D905D4F00003F2F /* JSONObjectTypeTests.swift */,
+				CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */,
 				CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */,
 				CEE453311D8DDFFB00E5968A /* DictionaryExtensionTests.swift */,
 				CEE453171D8D801800E5968A /* Info.plist */,
@@ -274,7 +274,7 @@
 			files = (
 				CEE453321D8DDFFB00E5968A /* DictionaryExtensionTests.swift in Sources */,
 				CEE453161D8D801800E5968A /* SwiftyJSONModelTests.swift in Sources */,
-				CEF8147F1D905D4F00003F2F /* JSONObjectTypeTests.swift in Sources */,
+				CEF8147F1D905D4F00003F2F /* JSONObjectTests.swift in Sources */,
 				CEE4532C1D8DD06100E5968A /* JSONExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
