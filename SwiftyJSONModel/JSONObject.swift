@@ -21,6 +21,16 @@ public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitial
 }
 
 public extension JSONObject where PropertyType.RawValue == String {
+    public init(_ jsonDict: [PropertyType: JSONRepresentable]) {
+        var dict = [String: JSON]()
+        
+        for (key, value) in jsonDict {
+            dict[key.rawValue] = value.jsonValue
+        }
+        
+        json = JSON(dict)
+    }
+    
     public func value<T: JSONInitializable>(for key: PropertyType) throws -> T {
         return try T(json: json[key.rawValue])
     }
