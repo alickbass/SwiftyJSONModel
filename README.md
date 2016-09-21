@@ -1,6 +1,8 @@
 # SwiftyJSONModel
 A microframework that helps to use [Swifty JSON](https://github.com/SwiftyJSON/SwiftyJSON) with your custom models in a easy and type-safe way
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 ##Motivation:
 Let's consider a very simple model:
 
