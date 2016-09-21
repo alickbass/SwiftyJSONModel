@@ -23,12 +23,12 @@ extension Person: JSONModelType {
         case firstName, lastName, age, isMarried, height
     }
     
-    init(properties: [PropertyKey : JSON]) throws {
-        firstName = try properties.value(for: .firstName).stringValue()
-        lastName = try properties.value(for: .lastName).stringValue()
-        age = try properties.value(for: .age).intValue()
-        isMarried = try properties.value(for: .isMarried).boolValue()
-        height = try properties.value(for: .height).doubleValue()
+    init(object: JSONObject<PropertyKey>) throws {
+        firstName = try object.value(for: .firstName)
+        lastName = try object.value(for: .lastName)
+        age = try object.value(for: .age)
+        isMarried = try object.value(for: .isMarried)
+        height = try object.value(for: .height)
     }
     
     var dictValue: [PropertyKey : JSONRepresentable] {
@@ -48,10 +48,7 @@ class SwiftyJSONModelTests: XCTestCase {
         let person = Person(firstName: "John", lastName: "Doe", age: 21, isMarried: false, height: 180)
         XCTAssertEqual(try? Person(json: person.jsonValue), person)
         XCTAssertThrowsError(try Person(json: JSON("test")), "Initialization with not an object should fail") { error in
-            XCTAssertEqual(error as? JSONModelError, .jsonIsNotAnObject)
-        }
-        XCTAssertThrowsError(try Person(json: JSON(["firstName": "John", "weight": 80])), "Initialization with unexpexted properties should fail") { error in
-            XCTAssertEqual(error as? JSONModelError, .unexpectedElement)
+            XCTAssertEqual(error as? JSONModelError, .invalidJSON)
         }
     }
     
