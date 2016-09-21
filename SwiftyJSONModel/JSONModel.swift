@@ -23,49 +23,25 @@ public protocol PropertiesContaining {
 }
 
 public protocol JSONObjectInitializable: PropertiesContaining, JSONInitializable {
-    init(properties: [PropertyKey: JSON]) throws
+    init(object: JSONObject<PropertyKey>) throws
 }
 
 public protocol JSONObjectRepresentable: PropertiesContaining, JSONRepresentable {
-    var jsonDictValue: [PropertyKey: JSON] { get }
     var dictValue: [PropertyKey: JSONRepresentable] { get }
 }
 
 public protocol JSONModelType: JSONObjectInitializable, JSONObjectRepresentable {}
 
 public extension JSONObjectInitializable where PropertyKey.RawValue == String {
-    public init(json: JSON) throws {
-        guard let dictionary = json.dictionary else {
-            throw JSONModelError.jsonIsNotAnObject
-        }
-        
-        var properties = [PropertyKey: JSON]()
-        
-        try dictionary.forEach({ key, value in
-            guard let propertyKey = PropertyKey(rawValue: key) else {
-                throw JSONModelError.unexpectedElement
-            }
-            properties[propertyKey] = value
-        })
-        
-        try self.init(properties: properties)
+    init(json: JSON) throws {
+        let jsonObject = try JSONObject<PropertyKey>(json: json)
+        try self.init(object: jsonObject)
     }
 }
 
 public extension JSONObjectRepresentable where PropertyKey.RawValue == String {
-    public var jsonDictValue: [PropertyKey: JSON] {
-        var dict = [PropertyKey: JSON]()
-        for (key, value) in dictValue {
-            dict[key] = value.jsonValue
-        }
-        return dict
-    }
-    
-    public var jsonValue: JSON {
-        var dict = [String: JSON]()
-        for (key, value) in jsonDictValue {
-            dict[key.rawValue] = value
-        }
-        return JSON(dict)
+    var jsonValue: JSON {
+        return JSONObject<PropertyKey>(dictValue).jsonValue
     }
 }
+
