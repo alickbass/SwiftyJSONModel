@@ -7,8 +7,6 @@ A microframework that helps to use [Swifty JSON](https://github.com/SwiftyJSON/S
 Let's consider a very simple model:
 
 ```swift
-import SwiftyJSON
-
 struct Person {
     let firstName: String
     let lastName: String
@@ -18,6 +16,8 @@ struct Person {
 Usually, if we want our model to support initialization from `JSON` using `SwiftyJSON` framework, we would have something like this:
 
 ```swift
+import SwiftyJSON
+
 extension Person {
     init(json: JSON) {
         firstName = json["firstName"].stringValue
@@ -36,6 +36,8 @@ There are several problems with this code:
 The easiest way to take advatage of swift type system is to put all the key in json into `Enum`. Here's an example:
 
 ```swift
+import SwiftyJSON
+
 extension Person {
     enum PropertyKey: String {
         case firstName, lastName, age
@@ -61,6 +63,8 @@ Yes we can! And here is where our microframework comes to place.
 Here is the same model but using the `SwiftyJSONModel`:
 
 ```swift
+SwiftyJSONModel
+
 extension Person: JSONObjectInitializable {
     enum PropertyKey: String {
         case firstName, lastName, age
