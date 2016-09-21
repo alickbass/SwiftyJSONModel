@@ -16,11 +16,12 @@ struct Person {
     let age: Int
     let isMarried: Bool
     let height: Double
+    let hobbies: [String]
 }
 
 extension Person: JSONModelType {
     enum PropertyKey: String {
-        case firstName, lastName, age, isMarried, height
+        case firstName, lastName, age, isMarried, height, hobbies
     }
     
     init(object: JSONObject<PropertyKey>) throws {
@@ -29,10 +30,11 @@ extension Person: JSONModelType {
         age = try object.value(for: .age)
         isMarried = try object.value(for: .isMarried)
         height = try object.value(for: .height)
+        hobbies = try object.value(for: .hobbies)
     }
     
     var dictValue: [PropertyKey : JSONRepresentable] {
-        return [.firstName: firstName, .lastName: lastName, .age: age, .isMarried: isMarried, .height: height]
+        return [.firstName: firstName, .lastName: lastName, .age: age, .isMarried: isMarried, .height: height, .hobbies: hobbies.jsonArray]
     }
 }
 
@@ -45,8 +47,7 @@ func == (left: Person, right: Person) -> Bool {
 class SwiftyJSONModelTests: XCTestCase {
     
     func testJSONModelProtocols() {
-        let person = Person(firstName: "John", lastName: "Doe", age: 21, isMarried: false, height: 180)
-        XCTAssertEqual(try? Person(json: person.jsonValue), person)
+        XCTAssertEqual(try? Person(json: Data.person.jsonValue), Data.person)
         XCTAssertThrowsError(try Person(json: JSON("test")), "Initialization with not an object should fail") { error in
             XCTAssertEqual(error as? JSONModelError, .invalidJSON)
         }
