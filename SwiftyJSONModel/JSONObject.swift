@@ -20,6 +20,12 @@ public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitial
     }
 }
 
+extension JSONObject: JSONRepresentable {
+    public var jsonValue: JSON {
+        return json
+    }
+}
+
 public extension JSONObject where PropertyType.RawValue == String {
     public init(_ jsonDict: [PropertyType: JSONRepresentable]) {
         var dict = [String: JSON]()
