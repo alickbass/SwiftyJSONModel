@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitializable where PropertyType.RawValue == String {
+public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitializable {
     let json: JSON
     
     public init(json: JSON) throws {
@@ -18,7 +18,9 @@ public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitial
         }
         self.json = json
     }
-    
+}
+
+public extension JSONObject where PropertyType.RawValue == String {
     public func value<T: JSONInitializable>(for key: PropertyType) throws -> T {
         return try T(json: json[key.rawValue])
     }
