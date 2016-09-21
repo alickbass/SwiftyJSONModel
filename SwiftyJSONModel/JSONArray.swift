@@ -7,3 +7,27 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+public struct JSONArray<T> where T: JSONInitializable & JSONRepresentable {
+    public let array: [T]
+    
+    public init(_ array: [T]) {
+        self.array = array
+    }
+}
+
+extension JSONArray: JSONInitializable {
+    public init(json: JSON) throws {
+        guard json.type == .array else {
+            throw JSONModelError.invalidJSON
+        }
+        array = try json.arrayValue().map({ try T(json: $0) })
+    }
+}
+
+extension JSONArray: JSONRepresentable {
+    public var jsonValue: JSON {
+        return JSON(array.map({ $0.jsonValue }))
+    }
+}
