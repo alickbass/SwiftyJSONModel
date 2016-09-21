@@ -21,6 +21,7 @@
 		CEE453361D8DF9F900E5968A /* JSONTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453351D8DF9F900E5968A /* JSONTypes.swift */; };
 		CEF8147D1D9055C000003F2F /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147C1D9055C000003F2F /* JSONObject.swift */; };
 		CEF8147F1D905D4F00003F2F /* JSONObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */; };
+		CEFB60C11D92F5BD000ADC24 /* JSONArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C01D92F5BD000ADC24 /* JSONArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		CEE453351D8DF9F900E5968A /* JSONTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTypes.swift; sourceTree = "<group>"; };
 		CEF8147C1D9055C000003F2F /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 		CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObjectTests.swift; sourceTree = "<group>"; };
+		CEFB60C01D92F5BD000ADC24 /* JSONArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				CEE453351D8DF9F900E5968A /* JSONTypes.swift */,
 				CEF8147C1D9055C000003F2F /* JSONObject.swift */,
 				CEE453271D8DC95E00E5968A /* JSONModel.swift */,
+				CEFB60C01D92F5BD000ADC24 /* JSONArray.swift */,
 				CEE453291D8DCB6A00E5968A /* JSONExtension.swift */,
 				CEE4530B1D8D801800E5968A /* Info.plist */,
 			);
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEFB60C11D92F5BD000ADC24 /* JSONArray.swift in Sources */,
 				CEE453361D8DF9F900E5968A /* JSONTypes.swift in Sources */,
 				CEE453281D8DC95E00E5968A /* JSONModel.swift in Sources */,
 				CEF8147D1D9055C000003F2F /* JSONObject.swift in Sources */,
