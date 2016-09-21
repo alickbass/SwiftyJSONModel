@@ -44,7 +44,7 @@ extension Person {
     }
     
     init(json: JSON) {
-        firstName = json[PropertyKey.age.rawValue].stringValue
+        firstName = json[PropertyKey.firstName.rawValue].stringValue
         lastName = json[PropertyKey.lastName.rawValue].stringValue
         age = json[PropertyKey.age.rawValue].intValue
     }
