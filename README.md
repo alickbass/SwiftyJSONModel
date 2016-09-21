@@ -24,6 +24,10 @@ extension Person {
         lastName = json["lastName"].stringValue
         age = json["age"].intValue
     }
+
+    var jsonValue: JSON {
+        return ["firstName": firstName, "lastName": lastName, "age": age]
+    }
 }
 ```
 There are several problems with this code:
@@ -48,6 +52,12 @@ extension Person {
         lastName = json[PropertyKey.lastName.rawValue].stringValue
         age = json[PropertyKey.age.rawValue].intValue
     }
+
+    var jsonValue: JSON {
+        return [PropertyKey.firstName.rawValue: firstName,
+                PropertyKey.lastName.rawValue: lastName,
+                PropertyKey.age.rawValue: age]
+    }
 }
 ```
 
@@ -65,7 +75,7 @@ Here is the same model but using the `SwiftyJSONModel`:
 ```swift
 SwiftyJSONModel
 
-extension Person: JSONObjectInitializable {
+extension Person: JSONModelType {
     enum PropertyKey: String {
         case firstName, lastName, age
     }
@@ -75,11 +85,16 @@ extension Person: JSONObjectInitializable {
         lastName = try object.value(for: .lastName)
         age = try object.value(for: .age)
     }
+
+    var dictValue: [PropertyKey : JSONRepresentable] {
+        return [.firstName: firstName, .lastName: lastName, .age: age]
+    }
 }
 
 let personJSON = //JSON that we'll use for our model
 do {
     let person = try Person(json: personJSON)
+    print(person.jsonValue)
 } catch let error {
     print(error)
 }
