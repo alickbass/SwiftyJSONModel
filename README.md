@@ -1,5 +1,5 @@
 # SwiftyJSONModel
-A microframework that helps to use Swifty JSON with your custom models in a easy and type-safe way
+A microframework that helps to use [Swifty JSON](https://github.com/SwiftyJSON/SwiftyJSON) with your custom models in a easy and type-safe way
 
 ##Motivation:
 Let's consider a very simple model:
