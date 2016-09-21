@@ -71,13 +71,11 @@ extension Person: JSONObjectInitializable {
     }
 }
 
-func some() {
-    let personJSON = //JSON that we'll use for our model
-    do {
-        let person = try Person(json: personJSON)
-    } catch let error {
-        print(error)
-    }
+let personJSON = //JSON that we'll use for our model
+do {
+    let person = try Person(json: personJSON)
+} catch let error {
+    print(error)
 }
 ```
 
