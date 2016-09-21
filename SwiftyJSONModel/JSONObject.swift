@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitializable where PropertyType.RawValue == String {
-    private let json: JSON
+    let json: JSON
     
     public init(json: JSON) throws {
         guard json.type == .dictionary else {
