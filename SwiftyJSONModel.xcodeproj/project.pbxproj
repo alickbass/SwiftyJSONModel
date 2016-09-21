@@ -22,6 +22,7 @@
 		CEF8147D1D9055C000003F2F /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147C1D9055C000003F2F /* JSONObject.swift */; };
 		CEF8147F1D905D4F00003F2F /* JSONObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */; };
 		CEFB60C11D92F5BD000ADC24 /* JSONArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C01D92F5BD000ADC24 /* JSONArray.swift */; };
+		CEFB60C31D931825000ADC24 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C21D931825000ADC24 /* TestData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		CEF8147C1D9055C000003F2F /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 		CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObjectTests.swift; sourceTree = "<group>"; };
 		CEFB60C01D92F5BD000ADC24 /* JSONArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONArray.swift; sourceTree = "<group>"; };
+		CEFB60C21D931825000ADC24 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		CEE453141D8D801800E5968A /* SwiftyJSONModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				CEFB60C21D931825000ADC24 /* TestData.swift */,
 				CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */,
 				CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */,
 				CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */,
@@ -279,6 +282,7 @@
 				CEE453321D8DDFFB00E5968A /* DictionaryExtensionTests.swift in Sources */,
 				CEE453161D8D801800E5968A /* SwiftyJSONModelTests.swift in Sources */,
 				CEF8147F1D905D4F00003F2F /* JSONObjectTests.swift in Sources */,
+				CEFB60C31D931825000ADC24 /* TestData.swift in Sources */,
 				CEE4532C1D8DD06100E5968A /* JSONExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
