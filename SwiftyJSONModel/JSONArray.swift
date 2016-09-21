@@ -31,3 +31,9 @@ extension JSONArray: JSONRepresentable {
         return JSON(array.map({ $0.jsonValue }))
     }
 }
+
+extension Array where Element: JSONInitializable & JSONRepresentable {
+    var jsonArray: JSONArray<Element> {
+        return JSONArray<Element>(self)
+    }
+}
