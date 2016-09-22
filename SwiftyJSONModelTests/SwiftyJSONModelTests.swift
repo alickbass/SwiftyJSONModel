@@ -34,7 +34,7 @@ extension Person: JSONModelType {
     }
     
     var dictValue: [PropertyKey : JSONRepresentable] {
-        return [.firstName: firstName, .lastName: lastName, .age: age, .isMarried: isMarried, .height: height, .hobbies: hobbies.jsonArray]
+        return [.firstName: firstName, .lastName: lastName, .age: age, .isMarried: isMarried, .height: height, .hobbies: hobbies.jsonRepresantable]
     }
 }
 
