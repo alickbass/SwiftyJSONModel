@@ -42,7 +42,7 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     public func value<T: JSONInitializable>(for key: PropertyType) throws -> [T] {
-        return try json.arrayValue().map({ try T(json: $0) })
+        return try json[key.rawValue].arrayValue().map({ try T(json: $0) })
     }
     
     public func value<T: JSONInitializable>(for key: PropertyType) -> T? {
