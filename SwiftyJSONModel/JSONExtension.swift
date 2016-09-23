@@ -35,6 +35,11 @@ public extension JSON {
         return arrayValue
     }
     
+    public func dictionaryValue() throws -> [String: JSON] {
+        guard let dictValue = dictionary else { throw JSONModelError.invalidElement }
+        return dictValue
+    }
+    
     public func uuidStringValue() throws -> String {
         guard let stringValue = string else { throw JSONModelError.invalidElement }
         guard let uuidStrigValue = NSUUID(uuidString: stringValue) else {
