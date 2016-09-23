@@ -49,17 +49,6 @@ public extension JSONObject where PropertyType.RawValue == String {
         return try self[key].arrayValue().map({ try T(json: $0) })
     }
     
-    public func value<T: JSONInitializable>(for key: PropertyType) throws -> [String: T] {
-        let jsonDict = try self[key].dictionaryValue()
-        var dictionary = [String: T]()
-        
-        for (key, value) in jsonDict {
-            dictionary[key] = try T(json: value)
-        }
-        
-        return dictionary
-    }
-    
     public func value<T: JSONInitializable>(for key: PropertyType) -> T? {
         return try? value(for: key)
     }
