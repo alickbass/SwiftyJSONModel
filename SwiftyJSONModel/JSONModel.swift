@@ -1,6 +1,6 @@
 //
 //  JSONProtocols.swift
-//  StreetSmart
+//  SwiftyJSONModel
 //
 //  Created by Oleksii on 14/09/16.
 //  Copyright © 2016 Oleksii Dykan. All rights reserved.
