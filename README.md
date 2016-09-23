@@ -33,7 +33,7 @@ extension Person {
 There are several problems with this code:
 
   * The key for our properties are raw strings and it is easy to make a typo in the key
-  * These subscript method will return value even if there is none in the original JSON. But we want to really now when the json is invalid.
+  * These subscript method will return value even if there is none in the original JSON. But we want to really know when the json is invalid.
 
 ###The first solution
 
@@ -63,7 +63,7 @@ extension Person {
 
 But this code still has several problems:
 
-* Although we use enums for our constants, noone restricts us from using some invalid string as a key. Like: `age = json["superRandomKey"].intValue`
+* Although we use enums for our constants, no one restricts us from using some invalid string as a key. Like: `age = json["superRandomKey"].intValue`
 * Still we have no clue if the json is actually valid
 * We should always manually call the proper method to get proper value. For `int` `intValue`, for `string` - `stringValue`.
 
