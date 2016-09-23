@@ -75,6 +75,7 @@ class JSONObjectTests: XCTestCase {
         let age: Int? = jsonObject.value(for: .age)
         let isMarried: Bool? = jsonObject.value(for: .isMarried)
         let height: Double? = jsonObject.value(for: .height)
+        let hobbies: [String]? = jsonObject.value(for: .hobbies)
         
         let nilFirstName: Double? = jsonObject.value(for: .firstName)
         let emptyFirstName: String? = emptyJsonObject.value(for: .firstName)
@@ -82,17 +83,20 @@ class JSONObjectTests: XCTestCase {
         let emptyAge: Int? = emptyJsonObject.value(for: .age)
         let emptyIsMarried: Bool? = emptyJsonObject.value(for: .isMarried)
         let emptyHeight: Double? = emptyJsonObject.value(for: .height)
+        let emptyHobbies: [String]? = emptyJsonObject.value(for: .hobbies)
         
         XCTAssertEqual(firstName, Data.person.firstName)
         XCTAssertEqual(lastName, Data.person.lastName)
         XCTAssertEqual(age, Data.person.age)
         XCTAssertEqual(isMarried, Data.person.isMarried)
         XCTAssertEqual(height, Data.person.height)
+        XCTAssertEqual(hobbies!, Data.person.hobbies)
         XCTAssertNil(nilFirstName)
         XCTAssertNil(emptyFirstName)
         XCTAssertNil(emptyLastName)
         XCTAssertNil(emptyAge)
         XCTAssertNil(emptyIsMarried)
         XCTAssertNil(emptyHeight)
+        XCTAssertNil(emptyHobbies)
     }
 }
