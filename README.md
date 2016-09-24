@@ -73,7 +73,7 @@ Yes we can! And here is where our microframework comes to place.
 Here is the same model but using the `SwiftyJSONModel`:
 
 ```swift
-SwiftyJSONModel
+import SwiftyJSONModel
 
 extension Person: JSONModelType {
     enum PropertyKey: String {
