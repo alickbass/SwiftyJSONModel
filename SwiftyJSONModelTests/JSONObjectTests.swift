@@ -20,7 +20,7 @@ class JSONObjectTests: XCTestCase {
         XCTAssertEqual(try? Data.jsonObject.value(for: .height), Data.person.height)
         
         XCTAssertThrowsError(try JSONObject<Person.PropertyKey>(json: JSON(5)), "Init with non object hould fail") { error in
-            XCTAssertEqual(error as? JSONModelError, .invalidJSON)
+            XCTAssertEqual(error as? JSONModelError, .jsonIsNotAnObject)
         }
         
         do {

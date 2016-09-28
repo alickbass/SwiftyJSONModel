@@ -49,7 +49,7 @@ class SwiftyJSONModelTests: XCTestCase {
     func testJSONModelProtocols() {
         XCTAssertEqual(try? Person(json: Data.person.jsonValue), Data.person)
         XCTAssertThrowsError(try Person(json: JSON("test")), "Initialization with not an object should fail") { error in
-            XCTAssertEqual(error as? JSONModelError, .invalidJSON)
+            XCTAssertEqual(error as? JSONModelError, .jsonIsNotAnObject)
         }
     }
     
