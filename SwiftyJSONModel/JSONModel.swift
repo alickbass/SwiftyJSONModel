@@ -9,9 +9,11 @@
 import Foundation
 import SwiftyJSON
 
-public enum JSONModelError: Error {
+public indirect enum JSONModelError: Error {
     case jsonIsNotAnObject
     case invalidElement
+    case invalidValueFor(key: String, JSONModelError)
+}
 }
 
 public protocol PropertiesContaining {
