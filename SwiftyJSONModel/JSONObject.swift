@@ -42,11 +42,19 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     public func value<T: JSONInitializable>(for key: PropertyType) throws -> T {
-        return try T(json: self[key])
+        do {
+            return try T(json: self[key])
+        } catch let error as JSONModelError {
+            throw JSONModelError.invalidValueFor(key: key.rawValue, error)
+        }
     }
     
     public func value<T: JSONInitializable>(for key: PropertyType) throws -> [T] {
-        return try self[key].arrayValue().map({ try T(json: $0) })
+        do {
+            return try self[key].arrayValue().map({ try T(json: $0) })
+        } catch let error as JSONModelError {
+            throw JSONModelError.invalidValueFor(key: key.rawValue, error)
+        }
     }
     
     public func value<T: JSONInitializable>(for key: PropertyType) -> T? {
