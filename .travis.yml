@@ -1,6 +1,12 @@
 language: objective-c
 osx_image: xcode8
 
+before_install: 
+  - brew update
+  - brew upgrade xctool
+  - brew install carthage
+  - carthage bootstrap --verbose
+
 script:
   - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -sdk iphonesimulator
 
