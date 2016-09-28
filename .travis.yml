@@ -1,0 +1,8 @@
+language: objective-c
+osx_image: xcode8
+
+script:
+  - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -sdk iphonesimulator
+
+notifications:
+  email: true
