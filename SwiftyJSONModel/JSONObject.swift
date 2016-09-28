@@ -14,7 +14,7 @@ public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitial
     
     public init(json: JSON) throws {
         guard json.type == .dictionary else {
-            throw JSONModelError.invalidJSON
+            throw JSONModelError.jsonIsNotAnObject
         }
         self.json = json
     }
