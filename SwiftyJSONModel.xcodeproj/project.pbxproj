@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE2642BB1D9C1C53003E2447 /* JSONModelErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2642BA1D9C1C53003E2447 /* JSONModelErrorTests.swift */; };
 		CEE453111D8D801800E5968A /* SwiftyJSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453071D8D801800E5968A /* SwiftyJSONModel.framework */; };
 		CEE453161D8D801800E5968A /* SwiftyJSONModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */; };
 		CEE453181D8D801800E5968A /* SwiftyJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CE2642BA1D9C1C53003E2447 /* JSONModelErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONModelErrorTests.swift; sourceTree = "<group>"; };
 		CEE453071D8D801800E5968A /* SwiftyJSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyJSONModel.h; sourceTree = "<group>"; };
 		CEE4530B1D8D801800E5968A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */,
 				CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */,
 				CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */,
+				CE2642BA1D9C1C53003E2447 /* JSONModelErrorTests.swift */,
 				CEE453171D8D801800E5968A /* Info.plist */,
 			);
 			path = SwiftyJSONModelTests;
@@ -279,6 +282,7 @@
 				CEE453161D8D801800E5968A /* SwiftyJSONModelTests.swift in Sources */,
 				CEF8147F1D905D4F00003F2F /* JSONObjectTests.swift in Sources */,
 				CEFB60C31D931825000ADC24 /* TestData.swift in Sources */,
+				CE2642BB1D9C1C53003E2447 /* JSONModelErrorTests.swift in Sources */,
 				CEE4532C1D8DD06100E5968A /* JSONExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
