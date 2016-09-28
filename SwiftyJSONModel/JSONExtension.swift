@@ -49,10 +49,3 @@ public extension JSON {
         return uuidStrigValue.uuidString
     }
 }
-
-public extension Dictionary {
-    public func value(for key: Key) throws -> Value {
-        guard let value = self[key] else { throw JSONModelError.elementAbsent }
-        return value
-    }
-}
