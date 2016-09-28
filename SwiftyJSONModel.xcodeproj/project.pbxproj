@@ -17,7 +17,6 @@
 		CEE4532C1D8DD06100E5968A /* JSONExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */; };
 		CEE4532D1D8DD0E100E5968A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; };
 		CEE453301D8DD46B00E5968A /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CEE453321D8DDFFB00E5968A /* DictionaryExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453311D8DDFFB00E5968A /* DictionaryExtensionTests.swift */; };
 		CEE453361D8DF9F900E5968A /* JSONTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453351D8DF9F900E5968A /* JSONTypes.swift */; };
 		CEF8147D1D9055C000003F2F /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147C1D9055C000003F2F /* JSONObject.swift */; };
 		CEF8147F1D905D4F00003F2F /* JSONObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */; };
@@ -69,7 +68,6 @@
 		CEE453271D8DC95E00E5968A /* JSONModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
 		CEE453291D8DCB6A00E5968A /* JSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtension.swift; sourceTree = "<group>"; };
 		CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensionTests.swift; sourceTree = "<group>"; };
-		CEE453311D8DDFFB00E5968A /* DictionaryExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionTests.swift; sourceTree = "<group>"; };
 		CEE453351D8DF9F900E5968A /* JSONTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTypes.swift; sourceTree = "<group>"; };
 		CEF8147C1D9055C000003F2F /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
 		CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObjectTests.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 				CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */,
 				CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */,
 				CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */,
-				CEE453311D8DDFFB00E5968A /* DictionaryExtensionTests.swift */,
 				CEE453171D8D801800E5968A /* Info.plist */,
 			);
 			path = SwiftyJSONModelTests;
@@ -279,7 +276,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE453321D8DDFFB00E5968A /* DictionaryExtensionTests.swift in Sources */,
 				CEE453161D8D801800E5968A /* SwiftyJSONModelTests.swift in Sources */,
 				CEF8147F1D905D4F00003F2F /* JSONObjectTests.swift in Sources */,
 				CEFB60C31D931825000ADC24 /* TestData.swift in Sources */,
