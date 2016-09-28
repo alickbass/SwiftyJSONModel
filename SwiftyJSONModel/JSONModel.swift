@@ -12,7 +12,6 @@ import SwiftyJSON
 public enum JSONModelError: Error {
     case jsonIsNotAnObject
     case invalidElement
-    case invalidUUIDString
 }
 
 public protocol PropertiesContaining {
