@@ -26,43 +26,61 @@ class JSONObjectTests: XCTestCase {
         do {
             let firstName: String = try Data.emptyJsonObject.value(for: .firstName)
             XCTFail("\(firstName) method should throw")
-        } catch let error {
-            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        } catch let JSONModelError.invalidValueFor(key: key, error) {
+            XCTAssertEqual(key, Person.PropertyKey.firstName.rawValue)
+            XCTAssertEqual(error, .invalidElement)
+        } catch {
+           XCTFail("Threw different error")
         }
         
         do {
             let lastName: String = try Data.emptyJsonObject.value(for: .lastName)
             XCTFail("\(lastName) method should throw")
-        } catch let error {
-            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        } catch let JSONModelError.invalidValueFor(key: key, error) {
+            XCTAssertEqual(key, Person.PropertyKey.lastName.rawValue)
+            XCTAssertEqual(error, .invalidElement)
+        } catch {
+            XCTFail("Threw different error")
         }
         
         do {
             let age: Int = try Data.emptyJsonObject.value(for: .age)
             XCTFail("\(age) method should throw")
-        } catch let error {
-            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        } catch let JSONModelError.invalidValueFor(key: key, error) {
+            XCTAssertEqual(key, Person.PropertyKey.age.rawValue)
+            XCTAssertEqual(error, .invalidElement)
+        } catch {
+            XCTFail("Threw different error")
         }
         
         do {
             let isMarried: Bool = try Data.emptyJsonObject.value(for: .isMarried)
             XCTFail("\(isMarried) method should throw")
-        } catch let error {
-            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        } catch let JSONModelError.invalidValueFor(key: key, error) {
+            XCTAssertEqual(key, Person.PropertyKey.isMarried.rawValue)
+            XCTAssertEqual(error, .invalidElement)
+        } catch {
+            XCTFail("Threw different error")
         }
         
         do {
             let height: Double = try Data.emptyJsonObject.value(for: .height)
             XCTFail("\(height) method should throw")
-        } catch let error {
-            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        } catch let JSONModelError.invalidValueFor(key: key, error) {
+            XCTAssertEqual(key, Person.PropertyKey.height.rawValue)
+            XCTAssertEqual(error, .invalidElement)
+        } catch {
+            XCTFail("Threw different error")
         }
         
         do {
             let firstName: Double = try Data.jsonObject.value(for: .firstName)
             XCTFail("\(firstName) method should throw")
-        } catch let error {
-            XCTAssertEqual(error as? JSONModelError, .invalidElement)
+        } catch let JSONModelError.invalidValueFor(key: key, error) {
+            XCTAssertEqual(key, Person.PropertyKey.firstName.rawValue)
+            XCTAssertEqual(error, .invalidElement)
+        } catch {
+            XCTFail("Threw different error")
         }
     }
     
