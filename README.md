@@ -37,7 +37,7 @@ There are several problems with this code:
 
 ###The first solution
 
-The easiest way to take advatage of swift type system is to put all the key in json into `Enum`. Here's an example:
+The easiest way to take advantage of swift type system is to put all the key in json into `Enum`. Here's an example:
 
 ```swift
 import SwiftyJSON
