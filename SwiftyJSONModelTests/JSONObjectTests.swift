@@ -24,52 +24,28 @@ class JSONObjectTests: XCTestCase {
             XCTAssertEqual(error as? JSONModelError, .jsonIsNotAnObject)
         }
         
-        do {
-            let firstName: String = try Data.emptyJsonObject.value(for: .firstName)
-            XCTFail("\(firstName) method should throw")
-        } catch let error {
-            let key = Person.PropertyKey.firstName.rawValue
-            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: key, .invalidElement))
+        XCTAssertThrowsError(try Data.emptyJsonObject.value(for: .firstName) as String) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PersonKey.firstName.rawValue, .invalidElement))
         }
         
-        do {
-            let lastName: String = try Data.emptyJsonObject.value(for: .lastName)
-            XCTFail("\(lastName) method should throw")
-        } catch let error {
-            let key = Person.PropertyKey.lastName.rawValue
-            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: key, .invalidElement))
+        XCTAssertThrowsError(try Data.emptyJsonObject.value(for: .lastName) as String) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PersonKey.lastName.rawValue, .invalidElement))
         }
         
-        do {
-            let age: Int = try Data.emptyJsonObject.value(for: .age)
-            XCTFail("\(age) method should throw")
-        } catch let error {
-            let key = Person.PropertyKey.age.rawValue
-            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: key, .invalidElement))
+        XCTAssertThrowsError(try Data.emptyJsonObject.value(for: .age) as Int) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PersonKey.age.rawValue, .invalidElement))
         }
         
-        do {
-            let isMarried: Bool = try Data.emptyJsonObject.value(for: .isMarried)
-            XCTFail("\(isMarried) method should throw")
-        } catch let error {
-            let key = Person.PropertyKey.isMarried.rawValue
-            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: key, .invalidElement))
+        XCTAssertThrowsError(try Data.emptyJsonObject.value(for: .isMarried) as Double) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PersonKey.isMarried.rawValue, .invalidElement))
         }
         
-        do {
-            let height: Double = try Data.emptyJsonObject.value(for: .height)
-            XCTFail("\(height) method should throw")
-        } catch let error {
-            let key = Person.PropertyKey.height.rawValue
-            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: key, .invalidElement))
+        XCTAssertThrowsError(try Data.emptyJsonObject.value(for: .height) as Double) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PersonKey.height.rawValue, .invalidElement))
         }
         
-        do {
-            let firstName: Double = try Data.jsonObject.value(for: .firstName)
-            XCTFail("\(firstName) method should throw")
-        } catch let error {
-            let key = Person.PropertyKey.firstName.rawValue
-            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: key, .invalidElement))
+        XCTAssertThrowsError(try Data.jsonObject.value(for: .firstName) as Double) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PersonKey.firstName.rawValue, .invalidElement))
         }
     }
     
