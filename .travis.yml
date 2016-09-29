@@ -5,7 +5,7 @@ before_install:
   - carthage bootstrap --verbose
 
 script:
-  - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel
+  - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -destination 'platform=iOS Simulator,name=iPhone 6'
 
 notifications:
   email: true
