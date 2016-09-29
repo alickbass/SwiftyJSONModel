@@ -36,7 +36,7 @@ class JSONObjectTests: XCTestCase {
             XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PersonKey.age.rawValue, .invalidElement))
         }
         
-        XCTAssertThrowsError(try Data.emptyJsonObject.value(for: .isMarried) as Double) { error in
+        XCTAssertThrowsError(try Data.emptyJsonObject.value(for: .isMarried) as Bool) { error in
             XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PersonKey.isMarried.rawValue, .invalidElement))
         }
         
