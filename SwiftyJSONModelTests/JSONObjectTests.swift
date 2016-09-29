@@ -11,6 +11,7 @@ import SwiftyJSON
 @testable import SwiftyJSONModel
 
 class JSONObjectTests: XCTestCase {
+    typealias PersonKey = Person.PropertyKey
     
     func testJSONObjectThrowableValueForKey() {
         XCTAssertEqual(try? Data.jsonObject.value(for: .firstName), Data.person.firstName)
