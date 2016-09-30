@@ -12,32 +12,17 @@ import SwiftyJSON
 
 class JSONExtensionTests: XCTestCase {
     
-    func testJSONBoolValue() {
-        XCTAssertThrowsError(try JSON("test").boolValue(), "Non bool should throw error") { error in
+    func testThrowableValue() {
+        XCTAssertThrowsError(try JSON("test").value() as Bool) { error in
             XCTAssertEqual(error as? JSONModelError, .invalidElement)
         }
-        XCTAssertEqual(try? JSON(true).boolValue(), true)
-    }
-    
-    func testJSONIntValue() {
-        XCTAssertThrowsError(try JSON("test").intValue(), "Non int should throw error") { error in
+        XCTAssertThrowsError(try JSON("test").value() as Int) { error in
             XCTAssertEqual(error as? JSONModelError, .invalidElement)
         }
-        XCTAssertEqual(try? JSON(3).intValue(), 3)
-    }
-    
-    func testJSONDoubleValue() {
-        XCTAssertThrowsError(try JSON("test").doubleValue(), "Non double should throw error") { error in
-            XCTAssertEqual(error as? JSONModelError, .invalidElement)
-        }
-        XCTAssertEqual(try? JSON(3.0).doubleValue(), 3.0)
-    }
-    
-    func testJSONStringValue() {
-        XCTAssertThrowsError(try JSON(true).stringValue(), "Non string should throw error") { error in
-            XCTAssertEqual(error as? JSONModelError, .invalidElement)
-        }
-        XCTAssertEqual(try? JSON("test").stringValue(), "test")
+        XCTAssertEqual(try? JSON(true).value() as Bool, true)
+        XCTAssertEqual(try? JSON(3).value() as Int, 3)
+        XCTAssertEqual(try? JSON(3.0).value() as Double, 3.0)
+        XCTAssertEqual(try? JSON("test").value() as String, "test")
     }
     
     func testJSONArrayValue() {
