@@ -10,24 +10,9 @@ import Foundation
 import SwiftyJSON
 
 public extension JSON {
-    public func boolValue() throws -> Bool {
-        guard let boolValue = bool else { throw JSONModelError.invalidElement }
-        return boolValue
-    }
-    
-    public func intValue() throws -> Int {
-        guard let intValue = int else { throw JSONModelError.invalidElement }
-        return intValue
-    }
-    
-    public func doubleValue() throws -> Double {
-        guard let doubleValue = double else { throw JSONModelError.invalidElement }
-        return doubleValue
-    }
-    
-    public func stringValue() throws -> String {
-        guard let stringValue = string else { throw JSONModelError.invalidElement }
-        return stringValue
+    public func value<T: Any>() throws -> T {
+        guard let value = object as? T else { throw JSONModelError.invalidElement }
+        return value
     }
     
     public func arrayValue() throws -> [JSON] {
