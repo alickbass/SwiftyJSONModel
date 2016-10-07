@@ -12,7 +12,6 @@
 		CEE453161D8D801800E5968A /* SwiftyJSONModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */; };
 		CEE453181D8D801800E5968A /* SwiftyJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CEE453241D8DC68A00E5968A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; };
-		CEE453261D8DC6F800E5968A /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEE453281D8DC95E00E5968A /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453271D8DC95E00E5968A /* JSONModel.swift */; };
 		CEE4532A1D8DCB6A00E5968A /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453291D8DCB6A00E5968A /* JSONExtension.swift */; };
 		CEE4532C1D8DD06100E5968A /* JSONExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */; };
@@ -42,7 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CEE453261D8DC6F800E5968A /* SwiftyJSON.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
