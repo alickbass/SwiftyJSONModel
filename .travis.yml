@@ -8,5 +8,8 @@ script:
   - open -a "simulator" --args -CurrentDeviceUDID A84965FC-070D-4EAF-83E8-84FFE99F5866
   - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -destination 'platform=iOS Simulator,name=iPhone 6'
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 notifications:
   email: true
