@@ -16,7 +16,7 @@ struct Person {
     let age: Int
     let isMarried: Bool
     let height: Double
-    let hobbies: [String]
+    let hobbies: [String]?
 }
 
 extension Person: JSONModelType {
@@ -30,11 +30,11 @@ extension Person: JSONModelType {
         age = try object.value(for: .age)
         isMarried = try object.value(for: .isMarried)
         height = try object.value(for: .height)
-        hobbies = try object.value(for: .hobbies)
+        hobbies = object.value(for: .hobbies)
     }
     
-    var dictValue: [PropertyKey : JSONRepresentable] {
-        return [.firstName: firstName, .lastName: lastName, .age: age, .isMarried: isMarried, .height: height, .hobbies: hobbies.jsonRepresantable]
+    var dictValue: [PropertyKey : JSONRepresentable?] {
+        return [.firstName: firstName, .lastName: lastName, .age: age, .isMarried: isMarried, .height: height, .hobbies: hobbies?.jsonRepresantable]
     }
 }
 
@@ -51,6 +51,13 @@ class SwiftyJSONModelTests: XCTestCase {
         XCTAssertThrowsError(try Person(json: JSON("test")), "Initialization with not an object should fail") { error in
             XCTAssertEqual(error as? JSONModelError, .jsonIsNotAnObject)
         }
+    }
+    
+    func testOptionalValues() {
+        var noHobbiesJSON = Data.person.jsonValue
+        noHobbiesJSON[Person.PropertyKey.hobbies.rawValue] = nil
+        
+        XCTAssertEqual((try? Person(json: noHobbiesJSON))?.jsonValue, noHobbiesJSON)
     }
     
 }

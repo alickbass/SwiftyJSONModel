@@ -35,7 +35,7 @@ public protocol JSONObjectInitializable: PropertiesContaining, JSONInitializable
 }
 
 public protocol JSONObjectRepresentable: PropertiesContaining, JSONRepresentable {
-    var dictValue: [PropertyKey: JSONRepresentable] { get }
+    var dictValue: [PropertyKey: JSONRepresentable?] { get }
 }
 
 public protocol JSONModelType: JSONObjectInitializable, JSONObjectRepresentable {}

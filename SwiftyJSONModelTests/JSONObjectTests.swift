@@ -58,7 +58,7 @@ class JSONObjectTests: XCTestCase {
         XCTAssertEqual(jsonObject.value(for: .age) as Int?, Data.person.age)
         XCTAssertEqual(jsonObject.value(for: .isMarried) as Bool?, Data.person.isMarried)
         XCTAssertEqual(jsonObject.value(for: .height) as Double?, Data.person.height)
-        XCTAssertEqual((jsonObject.value(for: .hobbies) as [String]?)!, Data.person.hobbies)
+        XCTAssertEqual((jsonObject.value(for: .hobbies) as [String]?)!, Data.person.hobbies!)
         
         XCTAssertNil(jsonObject.value(for: .firstName) as Double?)
         XCTAssertNil(emptyJsonObject.value(for: .firstName) as String?)
