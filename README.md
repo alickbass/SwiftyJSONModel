@@ -86,7 +86,7 @@ extension Person: JSONModelType {
         age = try object.value(for: .age)
     }
 
-    var dictValue: [PropertyKey : JSONRepresentable] {
+    var dictValue: [PropertyKey : JSONRepresentable?] {
         return [.firstName: firstName, .lastName: lastName, .age: age]
     }
 }
