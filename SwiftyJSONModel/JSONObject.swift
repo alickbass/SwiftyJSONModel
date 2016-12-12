@@ -31,7 +31,7 @@ public extension JSONObject where PropertyType.RawValue == String {
         var dict = [String: JSON]()
         
         for (key, value) in jsonDict {
-            let jsonValue = value?.jsonValue ?? nil
+            let jsonValue = value?.jsonValue ?? .null
             dict[key.rawValue] = jsonValue
         }
         

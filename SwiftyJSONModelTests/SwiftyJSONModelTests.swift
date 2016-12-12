@@ -55,7 +55,7 @@ class SwiftyJSONModelTests: XCTestCase {
     
     func testOptionalValues() {
         var noHobbiesJSON = Data.person.jsonValue
-        noHobbiesJSON[Person.PropertyKey.hobbies.rawValue] = nil
+        noHobbiesJSON[Person.PropertyKey.hobbies.rawValue] = .null
         
         XCTAssertEqual((try? Person(json: noHobbiesJSON))?.jsonValue, noHobbiesJSON)
     }
