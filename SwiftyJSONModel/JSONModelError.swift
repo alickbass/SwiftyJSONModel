@@ -26,3 +26,24 @@ extension JSONModelError: Equatable {
         }
     }
 }
+
+extension JSONModelError: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .jsonIsNotAnObject:
+            return "JSON is not an object"
+        case .invalidElement:
+            return "Invalid element"
+        case let .invalidValueFor(key: key, error):
+            var stringValue = "[\(key)]"
+            
+            if case .invalidValueFor(_) = error {
+                stringValue.append(error.description)
+            } else {
+                stringValue.append(": \(error.description)")
+            }
+            
+            return stringValue
+        }
+    }
+}
