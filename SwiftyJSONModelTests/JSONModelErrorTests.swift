@@ -21,4 +21,12 @@ class JSONModelErrorTests: XCTestCase {
         
     }
     
+    func testErrorStringDescription() {
+        let desiredDescription = "[country][city][name]: Invalid element"
+        let error = JSONModelError.invalidValueFor(key: "country", .invalidValueFor(key: "city", .invalidValueFor(key: "name", .invalidElement)))
+        XCTAssertEqual(error.description, desiredDescription)
+        
+        let objectErrorString = "[country]: \(JSONModelError.jsonIsNotAnObject.description)"
+        XCTAssertEqual(JSONModelError.invalidValueFor(key: "country", .jsonIsNotAnObject).description, objectErrorString)
+    }
 }
