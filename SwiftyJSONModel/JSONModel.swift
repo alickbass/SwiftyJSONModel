@@ -9,23 +9,6 @@
 import Foundation
 import SwiftyJSON
 
-public indirect enum JSONModelError: Error, Equatable {
-    case jsonIsNotAnObject
-    case invalidElement
-    case invalidValueFor(key: String, JSONModelError)
-}
-
-public func == (lhs: JSONModelError, rhs: JSONModelError) -> Bool {
-    switch (lhs, rhs) {
-    case (.jsonIsNotAnObject, .jsonIsNotAnObject), (.invalidElement, .invalidElement):
-        return true
-    case let (.invalidValueFor(leftKey, leftError), .invalidValueFor(rightKey, rightError)):
-        return leftKey == rightKey && leftError == rightError
-    default:
-        return false
-    }
-}
-
 public protocol PropertiesContaining {
     associatedtype PropertyKey: RawRepresentable, Hashable
 }
