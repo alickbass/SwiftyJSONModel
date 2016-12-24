@@ -108,4 +108,51 @@ Although from outside init method stays the same, we now solved all the issues t
 * The constructor now `throws` which means that the init will fail if some value or it's type was different from what we expected
 * The type of the value for key is now inferred from the property we specify. That means we do not need to have all this boilerplate code with `stringValue` or `intValue`. It will be done for us.
 
+##Recursive errors:
+Consider the following code:
+
+```swift
+struct Street {
+    let name: String
+    let number: Int
+    let city: City
+}
+
+struct City {
+    let name: String
+    let country: Country
+}
+
+struct Country {
+    let name: String
+    let continent: String
+}
+
+let streetJSON: JSON = [
+    "name": "Swifty Boulevard",
+    "number": 43,
+    "city": [
+        "name": "Cocoa",
+        "country": [
+            "name": 23, // <- Here the name is integer, although we expect string
+            "continent": "Africa"
+        ]
+    ]
+]
+
+do {
+    let street = try Street(json: streetJSON)
+} catch let error {
+    print(error)
+}
+```
+
+The code `Street(json: streetJSON)` will throw error as we expect the country's name to be a `String`, but we received `Int`. The library will throw a verbose error that will show the full path to the invalid property.
+
+In the given example `print` will give the following result: 
+
+`[city][country][name]: Invalid element`
+
+This feature is really powerful to debug the json that has a nested structure, especially in the process of development 😉
+
 
