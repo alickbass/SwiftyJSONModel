@@ -112,38 +112,67 @@ Although from outside init method stays the same, we now solved all the issues t
 Consider the following code:
 
 ```swift
-struct Street {
-    let name: String
-    let number: Int
-    let city: City
-}
-
-struct City {
-    let name: String
-    let country: Country
-}
-
-struct Country {
-    let name: String
-    let continent: String
-}
-
 let streetJSON: JSON = [
     "name": "Swifty Boulevard",
     "number": 43,
     "city": [
         "name": "Cocoa",
         "country": [
-            "name": 23, // <- Here the name is integer, although we expect string
+            "name": 23, // <- Here the name is Int, although we expect String
             "continent": "Africa"
         ]
     ]
 ]
 
+// Here are our models:
+struct Street: JSONObjectInitializable {
+    enum PropertyKey: String {
+        case name, number, city
+    }
+    
+    let name: String
+    let number: Int
+    let city: City
+    
+    init(object: JSONObject<PropertyKey>) throws {
+        name = try object.value(for: .name)
+        number = try object.value(for: .number)
+        city = try object.value(for: .city) // <- this will throw
+    }
+}
+
+struct City: JSONObjectInitializable {
+    enum PropertyKey: String {
+        case name, country
+    }
+    
+    let name: String
+    let country: Country
+    
+    init(object: JSONObject<PropertyKey>) throws {
+        name = try object.value(for: .name)
+        country = try object.value(for: .country) // <- this will throw
+    }
+}
+
+struct Country: JSONObjectInitializable {
+    enum PropertyKey: String {
+        case name, continent
+    }
+    
+    let name: String
+    let continent: String
+    
+    init(object: JSONObject<PropertyKey>) throws {
+        name = try object.value(for: .name) // <- this will throw
+        continent = try object.value(for: .continent)
+    }
+}
+
 do {
     let street = try Street(json: streetJSON)
 } catch let error {
-    print(error)
+    print(error) // prints "[city][country][name]: Invalid element"
 }
 ```
 
