@@ -58,6 +58,14 @@ public extension JSONObject where PropertyType.RawValue == String {
         }
     }
     
+    public func object(for key: PropertyType) throws -> JSONObject<PropertyType> {
+        do {
+            return try JSONObject<PropertyType>(json: self[key])
+        } catch let error as JSONModelError {
+            throw JSONModelError.invalidValueFor(key: key.rawValue, error)
+        }
+    }
+    
     public func value<T: JSONInitializable>(for key: PropertyType) -> T? {
         return try? value(for: key)
     }

@@ -68,4 +68,18 @@ class JSONObjectTests: XCTestCase {
         XCTAssertNil(emptyJsonObject.value(for: .height) as Double?)
         XCTAssertNil(emptyJsonObject.value(for: .hobbies) as [String]?)
     }
+    
+    func testJSONObjectObjectForKey() {
+        enum PropertyKey: String {
+            case first, second
+        }
+        
+        let nestedJSON: JSON = ["first": ["second": 3]]
+        let object = try! JSONObject<PropertyKey>(json: nestedJSON)
+        
+        XCTAssertEqual(try? object.object(for: .first).jsonValue, nestedJSON[PropertyKey.first.rawValue])
+        XCTAssertThrowsError(try object.object(for: .second)) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PropertyKey.second.rawValue, .jsonIsNotAnObject))
+        }
+    }
 }
