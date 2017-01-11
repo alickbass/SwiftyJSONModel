@@ -86,6 +86,25 @@ public extension JSONObject where PropertyType.RawValue == String {
         }
     }
     
+    public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T] {
+        return try value(for: keyPath)
+    }
+    
+    public func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [T] {
+        assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
+        let key = keyPath[0]
+        if keyPath.count == 1 {
+            return try value(for: key)
+        } else {
+            let subPath: [PropertyType] = .init(keyPath[1..<keyPath.count])
+            do {
+                return try JSONObject<PropertyType>(json: self[key]).value(for: subPath)
+            } catch let error as JSONModelError {
+                throw JSONModelError.invalidValueFor(key: key.rawValue, error)
+            }
+        }
+    }
+    
     // MARK: - Optional methods
     public func value<T: JSONInitializable>(for key: PropertyType) -> T? {
         return try? value(for: key)
@@ -96,6 +115,10 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> T? {
+        return try? value(for: keyPath)
+    }
+    
+    public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> [T]? {
         return try? value(for: keyPath)
     }
 }
