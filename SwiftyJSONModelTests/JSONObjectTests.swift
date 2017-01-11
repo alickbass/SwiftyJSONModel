@@ -68,4 +68,54 @@ class JSONObjectTests: XCTestCase {
         XCTAssertNil(emptyJsonObject.value(for: .height) as Double?)
         XCTAssertNil(emptyJsonObject.value(for: .hobbies) as [String]?)
     }
+    
+    func testJSONObjectObjectForKey() {
+        enum PropertyKey: String {
+            case first, second
+        }
+        
+        let nestedJSON: JSON = ["first": ["second": 3]]
+        let object = try! JSONObject<PropertyKey>(json: nestedJSON)
+        
+        XCTAssertEqual(try? object.object(for: .first).jsonValue, nestedJSON[PropertyKey.first.rawValue])
+        XCTAssertThrowsError(try object.object(for: .second)) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PropertyKey.second.rawValue, .jsonIsNotAnObject))
+        }
+    }
+    
+    func testJSONObjectValueForKeyPath() {
+        enum PropertyKey: String {
+            case first, second, third, array
+        }
+        
+        let nestedJSON: JSON = ["first": ["second": ["third": 3, "array": [1, 2, 3]]]]
+        let object = try! JSONObject<PropertyKey>(json: nestedJSON)
+        
+        XCTAssertEqual(try? object.value(for: .first, .second, .third), 3)
+        XCTAssertThrowsError(try object.value(for: .first, .second, .third) as String) { error in
+            let first = PropertyKey.first.rawValue
+            let second = PropertyKey.second.rawValue
+            let third = PropertyKey.third.rawValue
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: first,  .invalidValueFor(key: second, .invalidValueFor(key: third, .invalidElement))))
+        }
+        
+        XCTAssertThrowsError(try object.value(for: .first, .third, .third) as String) { error in
+            let first = PropertyKey.first.rawValue
+            let third = PropertyKey.third.rawValue
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: first,  .invalidValueFor(key: third,  .jsonIsNotAnObject)))
+        }
+        
+        XCTAssertEqual(try! object.value(for: .first, .second, .array), [1, 2, 3])
+        XCTAssertThrowsError(try object.value(for: .first, .second, .array) as [String]) { error in
+            let first = PropertyKey.first.rawValue
+            let second = PropertyKey.second.rawValue
+            let array = PropertyKey.array.rawValue
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: first,  .invalidValueFor(key: second, .invalidValueFor(key: array, .invalidElement))))
+        }
+        
+        XCTAssertEqual(object.value(for: .first, .second, .third) as Int?, 3)
+        XCTAssertNil(object.value(for: .first, .second, .third) as String?)
+        XCTAssertEqual((object.value(for: .first, .second, .array) as [Int]?)!, [1, 2, 3])
+        XCTAssertNil(object.value(for: .first, .second, .array) as [String]?)
+    }
 }
