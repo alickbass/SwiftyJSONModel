@@ -108,80 +108,76 @@ Although from outside init method stays the same, we now solved all the issues t
 * The constructor now `throws` which means that the init will fail if some value or it's type was different from what we expected
 * The type of the value for key is now inferred from the property we specify. That means we do not need to have all this boilerplate code with `stringValue` or `intValue`. It will be done for us.
 
-##Recursive errors:
-Consider the following code:
+##Nested JSON:
+Imagine that with use some public `API` that has the following json structure:
 
-```swift
-let streetJSON: JSON = [
-    "name": "Swifty Boulevard",
-    "number": 43,
-    "city": [
-        "name": "Cocoa",
-        "country": [
-            "name": 23, // <- Here the name is Int, although we expect String
-            "continent": "Africa"
-        ]
-    ]
-]
-
-// Here are our models:
-struct Street: JSONObjectInitializable {
-    enum PropertyKey: String {
-        case name, number, city
+```json
+{
+  "name": "Swifty Boulevard",
+  "number": 43,
+  "city": {
+    "name": "Cocoa",
+    "country": {
+      "name": "Morocco",
+      "continent": "Africa"
     }
-    
-    let name: String
-    let number: Int
-    let city: City
-    
-    init(object: JSONObject<PropertyKey>) throws {
-        name = try object.value(for: .name)
-        number = try object.value(for: .number)
-        city = try object.value(for: .city) // <- this will throw
-    }
-}
-
-struct City: JSONObjectInitializable {
-    enum PropertyKey: String {
-        case name, country
-    }
-    
-    let name: String
-    let country: Country
-    
-    init(object: JSONObject<PropertyKey>) throws {
-        name = try object.value(for: .name)
-        country = try object.value(for: .country) // <- this will throw
-    }
-}
-
-struct Country: JSONObjectInitializable {
-    enum PropertyKey: String {
-        case name, continent
-    }
-    
-    let name: String
-    let continent: String
-    
-    init(object: JSONObject<PropertyKey>) throws {
-        name = try object.value(for: .name) // <- this will throw
-        continent = try object.value(for: .continent)
-    }
-}
-
-do {
-    let street = try Street(json: streetJSON)
-} catch let error {
-    print(error) // prints "[city][country][name]: Invalid element"
+  }
 }
 ```
 
-The code `Street(json: streetJSON)` will throw error as we expect the country's name to be a `String`, but we received `Int`. The library will throw a verbose error that will show the full path to the invalid property.
+So here we have a nested json where the `root` is object, `city` is object and `country` is object. Imagine that we don't really need all the objects structure, but we would rather have `city` as `String` and `country` as `String` instead of objects. and we would like to have the following model:
 
-In the given example `print` will give the following result: 
+```swift
+struct Street {
+    let name: String
+    let number: Int?
+    let city: String
+    let country: String
+}
+```
 
-`[city][country][name]: Invalid element`
+So what we want, is to exctract `name` of `city` and `name` of `country` and use it for the properties. This is how it would look like with `SwiftyJSONModel`:
 
-This feature is really powerful to debug the json that has a nested structure, especially in the process of development 😉
+```swift
+extension Street: JSONObjectInitializable {
+    enum PropertyKey: String {
+        case name, number, city, country
+    }
+    
+    init(object: JSONObject<PropertyKey>) throws {
+        name = try object.value(for: .name)
+        number = object.value(for: .number)
+        city = try object.value(for: .city, .name)
+        country = try object.value(for: .city, .country, .name)
+    }
+}
+```
 
+So now instead of providing the `key` to property we need, we provide the whole key path. For the `city` is was: `.city, .name` and for the country it was `.city, .country, .name`. As easy as that.
 
+##Recursive errors:
+Imagine that we have an error in the `Street` json we saw above and something like this arrives:
+
+```json
+{
+  "name": "Swifty Boulevard",
+  "number": 43,
+  "city": {
+    "name": "Cocoa",
+    "country": {
+      "name": 23,
+      "continent": "Africa"
+    }
+  }
+}
+```
+
+Here the name of `Country` is `23` and we expect it to be `String`
+
+We still have the same model as we had before, but now when we will try to construct the `Street` json, it will give us the following error:
+
+```
+[city][country][name]: Invalid element
+```
+
+So now we can immediately see what exactly went wrong and what field in json was corrupt. This feature is really powerful to debug the json that has a nested structure, especially when your back-end changes fast and you need to reflect to the changes as quick as possible 😉
