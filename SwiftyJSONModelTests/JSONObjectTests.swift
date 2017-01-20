@@ -106,11 +106,17 @@ class JSONObjectTests: XCTestCase {
         }
         
         XCTAssertEqual(try! object.value(for: .first, .second, .array), [1, 2, 3])
+        XCTAssertThrowsError(try object.value(for: .first, .second, .third) as [Int]) { error in
+            let first = PropertyKey.first.rawValue
+            let second = PropertyKey.second.rawValue
+            let third = PropertyKey.third.rawValue
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: first,  .invalidValueFor(key: second, .invalidValueFor(key: third, .invalidElement))))
+        }
         XCTAssertThrowsError(try object.value(for: .first, .second, .array) as [String]) { error in
             let first = PropertyKey.first.rawValue
             let second = PropertyKey.second.rawValue
             let array = PropertyKey.array.rawValue
-            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: first,  .invalidValueFor(key: second, .invalidValueFor(key: array, .invalidElement))))
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: first,  .invalidValueFor(key: second, .invalidValueFor(key: array, .invalidValueFor(key: "0", .invalidElement)))))
         }
         
         XCTAssertEqual(object.value(for: .first, .second, .third) as Int?, 3)
