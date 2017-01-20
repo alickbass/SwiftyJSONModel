@@ -17,10 +17,6 @@ public protocol JSONRepresentable {
     var jsonValue: JSON { get }
 }
 
-public extension JSONRepresentable {
-    public var jsonValue: JSON { return JSON(self) }
-}
-
 extension String: JSONInitializable, JSONRepresentable {
     public init(json: JSON) throws { self = try json.value() }
     public var jsonValue: JSON { return JSON(self) }
