@@ -21,7 +21,9 @@ class JSONExtensionTests: XCTestCase {
         }
         XCTAssertEqual(try? JSON(true).value() as Bool, true)
         XCTAssertEqual(try? JSON(3).value() as Int, 3)
+        XCTAssertEqual(try? JSON(0.0).value() as Int, 0)
         XCTAssertEqual(try? JSON(3.0).value() as Double, 3.0)
+        XCTAssertEqual(try? JSON(-5).value() as Double, -5)
         XCTAssertEqual(try? JSON("test").value() as String, "test")
     }
     
