@@ -81,7 +81,13 @@ public extension JSONObject where PropertyType.RawValue == String {
         let key = keyPath[0]
         do {
             if keyPath.count == 1 {
-                return try self[key].arrayValue().map({ try T(json: $0) })
+                return try self[key].arrayValue().enumerated().lazy.map({ index, json in
+                    do {
+                        return try T(json: json)
+                    } catch let error as JSONModelError {
+                        throw JSONModelError.invalidValueFor(key: String(index), error)
+                    }
+                })
             } else {
                 let subPath: [PropertyType] = .init(keyPath[1..<keyPath.count])
                 return try JSONObject<PropertyType>(json: self[key]).value(for: subPath)
