@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "8.0"
   s.requires_arc = true
 
-  s.source = { :git => "https://github.com/DKalachniuk/SwiftyJSONModel.git", :tag => s.version, :branch => 'features/cocoapod' }
+  s.source = { :git => "https://github.com/DKalachniuk/SwiftyJSONModel.git", :tag => s.version, :branch => 'master' }
   s.source_files = 'SwiftyJSONModel/*.swift'
   s.dependency 'SwiftyJSON', '~> 3.0'
 
