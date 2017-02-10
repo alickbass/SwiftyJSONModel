@@ -218,12 +218,13 @@
 					CEE453061D8D801800E5968A = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 7H6SM4X3H7;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					CEE4530F1D8D801800E5968A = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 7H6SM4X3H7;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
