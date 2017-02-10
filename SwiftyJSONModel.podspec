@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "SwiftyJSONModel"
-  s.version = "0.0.8"
+  s.version = "0.0.9"
   s.summary = "Better way to use SwiftyJSON with custom models"
   s.homepage = "https://github.com/DKalachniuk/SwiftyJSONModel"
   s.license = { :type => "MIT", :file => "LICENSE.txt" }
