@@ -181,3 +181,29 @@ We still have the same model as we had before, but now when we will try to const
 ```
 
 So now we can immediately see what exactly went wrong and what field in json was corrupt. This feature is really powerful to debug the json that has a nested structure, especially when your back-end changes fast and you need to reflect to the changes as quick as possible 😉
+
+#Integration
+
+##CocoaPods (iOS 8+)
+
+You can use CocoaPods to install SwiftyJSONModel by adding it to your Podfile:
+
+```swift
+platform :ios, '8.0'
+use_frameworks!
+
+target 'MyApp' do
+pod 'SwiftyJSONModel'
+end
+```
+
+Note that this requires CocoaPods version 36, and your iOS deployment target to be at least 8.0:
+
+##Carthage (iOS 8+)
+
+You can use Carthage to install SwiftyJSONModel by adding it to your Cartfile:
+
+```swift
+github "alickbass/SwiftyJSONModel"
+```
+
