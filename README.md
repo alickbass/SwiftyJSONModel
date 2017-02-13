@@ -188,17 +188,22 @@ So now we can immediately see what exactly went wrong and what field in json was
 
 You can use CocoaPods to install SwiftyJSONModel by adding it to your Podfile:
 
+```swift
 platform :ios, '8.0'
 use_frameworks!
 
 target 'MyApp' do
 pod 'SwiftyJSONModel'
 end
+```
+
 Note that this requires CocoaPods version 36, and your iOS deployment target to be at least 8.0:
 
 ##Carthage (iOS 8+, OS X 10.9+)
 
 You can use Carthage to install SwiftyJSONModel by adding it to your Cartfile:
 
+```swift
 github "alickbass/SwiftyJSONModel"
+```
 
