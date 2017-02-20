@@ -55,7 +55,7 @@ public extension JSONObject where PropertyType.RawValue == String {
         return try value(for: keyPath)
     }
     
-    public func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> T {
+    private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> T {
         assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
         
         let key = keyPath[0]
@@ -75,7 +75,7 @@ public extension JSONObject where PropertyType.RawValue == String {
         return try value(for: keyPath)
     }
     
-    public func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [T] {
+    private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [T] {
         assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
         
         let key = keyPath[0]
