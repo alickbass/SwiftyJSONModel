@@ -97,6 +97,26 @@ public extension JSONObject where PropertyType.RawValue == String {
         }
     }
     
+    public func flatMap<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T] {
+        return try flatMap(for: keyPath)
+    }
+    
+    private func flatMap<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [T] {
+        assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
+        
+        let key = keyPath[0]
+        do {
+            if keyPath.count == 1 {
+                return try self[key].arrayValue().lazy.flatMap({ try? T(json: $0) })
+            } else {
+                let subPath: [PropertyType] = .init(keyPath[1..<keyPath.count])
+                return try JSONObject<PropertyType>(json: self[key]).flatMap(for: subPath)
+            }
+        } catch let error as JSONModelError {
+            throw JSONModelError.invalidValueFor(key: key.rawValue, error)
+        }
+    }
+    
     // MARK: - Optional methods
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> T? {
         return try? value(for: keyPath)

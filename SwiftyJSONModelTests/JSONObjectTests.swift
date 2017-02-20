@@ -124,4 +124,22 @@ class JSONObjectTests: XCTestCase {
         XCTAssertEqual((object.value(for: .first, .second, .array) as [Int]?)!, [1, 2, 3])
         XCTAssertNil(object.value(for: .first, .second, .array) as [String]?)
     }
+    
+    func testJSONObjectFlatMap() {
+        enum PropertyKey: String {
+            case first, second, third, array
+        }
+        
+        let nestedJSON: JSON = ["first": ["second": ["third": 3, "array": [1, "test", 3]]]]
+        let object = try! JSONObject<PropertyKey>(json: nestedJSON)
+        
+        XCTAssertEqual(try! object.flatMap(for: .first, .second, .array), [1, 3])
+        XCTAssertEqual(try! object.flatMap(for: .first, .second, .array), ["test"])
+        XCTAssertThrowsError(try object.flatMap(for: .first, .second, .third) as [Int]) { error in
+            let first = PropertyKey.first.rawValue
+            let second = PropertyKey.second.rawValue
+            let third = PropertyKey.third.rawValue
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: first,  .invalidValueFor(key: second, .invalidValueFor(key: third, .invalidElement))))
+        }
+    }
 }
