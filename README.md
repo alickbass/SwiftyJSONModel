@@ -66,6 +66,8 @@ extension Person {
 **We get the following:**
 
 ```swift
+import SwiftyJSONModel
+
 extension Person: JSONObjectInitializable {
     enum PropertyKey: String {
         case name, age, isMarried, height, hobbies
