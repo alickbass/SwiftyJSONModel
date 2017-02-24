@@ -6,7 +6,7 @@
 //  Copyright © 2016 Oleksii Dykan. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for SwiftyJSONModel.
 FOUNDATION_EXPORT double SwiftyJSONModelVersionNumber;
