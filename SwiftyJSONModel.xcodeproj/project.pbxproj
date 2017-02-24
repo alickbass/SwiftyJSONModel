@@ -24,6 +24,21 @@
 		CEA15E5F1E60320B009A259F /* JSONExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */; };
 		CEA15E601E60320B009A259F /* JSONModelErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2642BA1D9C1C53003E2447 /* JSONModelErrorTests.swift */; };
 		CEA15E611E603298009A259F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E461E602F6C009A259F /* SwiftyJSON.framework */; };
+		CEA15E6F1E60357B009A259F /* SwiftyJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CEA15E701E60357B009A259F /* JSONTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453351D8DF9F900E5968A /* JSONTypes.swift */; };
+		CEA15E711E60357B009A259F /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453271D8DC95E00E5968A /* JSONModel.swift */; };
+		CEA15E721E60357B009A259F /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147C1D9055C000003F2F /* JSONObject.swift */; };
+		CEA15E731E60357B009A259F /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C01D92F5BD000ADC24 /* JSONHelpers.swift */; };
+		CEA15E741E60357B009A259F /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453291D8DCB6A00E5968A /* JSONExtension.swift */; };
+		CEA15E751E60357B009A259F /* JSONModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54DE4D1E0D89790037D186 /* JSONModelError.swift */; };
+		CEA15E771E6035D5009A259F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E761E6035D5009A259F /* SwiftyJSON.framework */; };
+		CEA15E811E603956009A259F /* SwiftyJSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E671E603556009A259F /* SwiftyJSONModel.framework */; };
+		CEA15E871E6039F5009A259F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E761E6035D5009A259F /* SwiftyJSON.framework */; };
+		CEA15E881E603A21009A259F /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C21D931825000ADC24 /* TestData.swift */; };
+		CEA15E891E603A21009A259F /* SwiftyJSONModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */; };
+		CEA15E8A1E603A21009A259F /* JSONObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */; };
+		CEA15E8B1E603A21009A259F /* JSONExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */; };
+		CEA15E8C1E603A21009A259F /* JSONModelErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2642BA1D9C1C53003E2447 /* JSONModelErrorTests.swift */; };
 		CEE453111D8D801800E5968A /* SwiftyJSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453071D8D801800E5968A /* SwiftyJSONModel.framework */; };
 		CEE453161D8D801800E5968A /* SwiftyJSONModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */; };
 		CEE453181D8D801800E5968A /* SwiftyJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,6 +62,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = CEA15E271E602E2B009A259F;
 			remoteInfo = "SwiftyJSONModel-Mac";
+		};
+		CEA15E821E603956009A259F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEE452FE1D8D801800E5968A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEA15E661E603556009A259F;
+			remoteInfo = "SwiftyJSONModel-tvOS";
 		};
 		CEE453121D8D801800E5968A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -85,6 +107,9 @@
 		CEA15E281E602E2B009A259F /* SwiftyJSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA15E461E602F6C009A259F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		CEA15E511E6031F1009A259F /* SwiftyJSONModelTests-Mac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftyJSONModelTests-Mac.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEA15E671E603556009A259F /* SwiftyJSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEA15E761E6035D5009A259F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/tvOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		CEA15E7C1E603956009A259F /* SwiftyJSONModelTests-tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftyJSONModelTests-tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE453071D8D801800E5968A /* SwiftyJSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyJSONModel.h; sourceTree = "<group>"; };
 		CEE4530B1D8D801800E5968A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,6 +142,23 @@
 			files = (
 				CEA15E561E6031F1009A259F /* SwiftyJSONModel.framework in Frameworks */,
 				CEA15E611E603298009A259F /* SwiftyJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEA15E631E603556009A259F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E771E6035D5009A259F /* SwiftyJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEA15E791E603956009A259F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E811E603956009A259F /* SwiftyJSONModel.framework in Frameworks */,
+				CEA15E871E6039F5009A259F /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +199,8 @@
 				CEE453101D8D801800E5968A /* SwiftyJSONModelTests.xctest */,
 				CEA15E281E602E2B009A259F /* SwiftyJSONModel.framework */,
 				CEA15E511E6031F1009A259F /* SwiftyJSONModelTests-Mac.xctest */,
+				CEA15E671E603556009A259F /* SwiftyJSONModel.framework */,
+				CEA15E7C1E603956009A259F /* SwiftyJSONModelTests-tvOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,6 +236,7 @@
 		CEE453221D8DC68A00E5968A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEA15E761E6035D5009A259F /* SwiftyJSON.framework */,
 				CEA15E461E602F6C009A259F /* SwiftyJSON.framework */,
 				CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */,
 			);
@@ -206,6 +251,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA15E3F1E602EB4009A259F /* SwiftyJSONModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEA15E641E603556009A259F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E6F1E60357B009A259F /* SwiftyJSONModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +307,42 @@
 			name = "SwiftyJSONModelTests-Mac";
 			productName = "SwiftyJSONModelTests-Mac";
 			productReference = CEA15E511E6031F1009A259F /* SwiftyJSONModelTests-Mac.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CEA15E661E603556009A259F /* SwiftyJSONModel-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEA15E6C1E603556009A259F /* Build configuration list for PBXNativeTarget "SwiftyJSONModel-tvOS" */;
+			buildPhases = (
+				CEA15E621E603556009A259F /* Sources */,
+				CEA15E631E603556009A259F /* Frameworks */,
+				CEA15E641E603556009A259F /* Headers */,
+				CEA15E651E603556009A259F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftyJSONModel-tvOS";
+			productName = "SwiftyJSONModel-tvOS";
+			productReference = CEA15E671E603556009A259F /* SwiftyJSONModel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CEA15E7B1E603956009A259F /* SwiftyJSONModelTests-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEA15E841E603956009A259F /* Build configuration list for PBXNativeTarget "SwiftyJSONModelTests-tvOS" */;
+			buildPhases = (
+				CEA15E781E603956009A259F /* Sources */,
+				CEA15E791E603956009A259F /* Frameworks */,
+				CEA15E7A1E603956009A259F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEA15E831E603956009A259F /* PBXTargetDependency */,
+			);
+			name = "SwiftyJSONModelTests-tvOS";
+			productName = "SwiftyJSONModelTests-tvOS";
+			productReference = CEA15E7C1E603956009A259F /* SwiftyJSONModelTests-tvOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		CEE453061D8D801800E5968A /* SwiftyJSONModel */ = {
@@ -314,6 +403,16 @@
 						DevelopmentTeam = 7H6SM4X3H7;
 						ProvisioningStyle = Automatic;
 					};
+					CEA15E661E603556009A259F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 7H6SM4X3H7;
+						ProvisioningStyle = Automatic;
+					};
+					CEA15E7B1E603956009A259F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 7H6SM4X3H7;
+						ProvisioningStyle = Automatic;
+					};
 					CEE453061D8D801800E5968A = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 7H6SM4X3H7;
@@ -344,6 +443,8 @@
 				CEE4530F1D8D801800E5968A /* SwiftyJSONModelTests */,
 				CEA15E271E602E2B009A259F /* SwiftyJSONModel-Mac */,
 				CEA15E501E6031F1009A259F /* SwiftyJSONModelTests-Mac */,
+				CEA15E661E603556009A259F /* SwiftyJSONModel-tvOS */,
+				CEA15E7B1E603956009A259F /* SwiftyJSONModelTests-tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -357,6 +458,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CEA15E4F1E6031F1009A259F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEA15E651E603556009A259F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEA15E7A1E603956009A259F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -405,6 +520,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEA15E621E603556009A259F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E751E60357B009A259F /* JSONModelError.swift in Sources */,
+				CEA15E701E60357B009A259F /* JSONTypes.swift in Sources */,
+				CEA15E741E60357B009A259F /* JSONExtension.swift in Sources */,
+				CEA15E731E60357B009A259F /* JSONHelpers.swift in Sources */,
+				CEA15E721E60357B009A259F /* JSONObject.swift in Sources */,
+				CEA15E711E60357B009A259F /* JSONModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEA15E781E603956009A259F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E881E603A21009A259F /* TestData.swift in Sources */,
+				CEA15E8B1E603A21009A259F /* JSONExtensionTests.swift in Sources */,
+				CEA15E891E603A21009A259F /* SwiftyJSONModelTests.swift in Sources */,
+				CEA15E8C1E603A21009A259F /* JSONModelErrorTests.swift in Sources */,
+				CEA15E8A1E603A21009A259F /* JSONObjectTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEE453021D8D801800E5968A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -437,6 +577,11 @@
 			isa = PBXTargetDependency;
 			target = CEA15E271E602E2B009A259F /* SwiftyJSONModel-Mac */;
 			targetProxy = CEA15E571E6031F1009A259F /* PBXContainerItemProxy */;
+		};
+		CEA15E831E603956009A259F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEA15E661E603556009A259F /* SwiftyJSONModel-tvOS */;
+			targetProxy = CEA15E821E603956009A259F /* PBXContainerItemProxy */;
 		};
 		CEE453131D8D801800E5968A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -539,6 +684,96 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		CEA15E6D1E603556009A259F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7H6SM4X3H7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyJSONModel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.violentoctopus.SwiftyJSONModel;
+				PRODUCT_NAME = SwiftyJSONModel;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		CEA15E6E1E603556009A259F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7H6SM4X3H7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyJSONModel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.violentoctopus.SwiftyJSONModel;
+				PRODUCT_NAME = SwiftyJSONModel;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		CEA15E851E603956009A259F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 7H6SM4X3H7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = SwiftyJSONModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.violentoctopus.SwiftyJSONModelTests-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		CEA15E861E603956009A259F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 7H6SM4X3H7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = SwiftyJSONModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.violentoctopus.SwiftyJSONModelTests-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
 		};
@@ -748,6 +983,22 @@
 			buildConfigurations = (
 				CEA15E5A1E6031F1009A259F /* Debug */,
 				CEA15E5B1E6031F1009A259F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CEA15E6C1E603556009A259F /* Build configuration list for PBXNativeTarget "SwiftyJSONModel-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEA15E6D1E603556009A259F /* Debug */,
+				CEA15E6E1E603556009A259F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CEA15E841E603956009A259F /* Build configuration list for PBXNativeTarget "SwiftyJSONModelTests-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEA15E851E603956009A259F /* Debug */,
+				CEA15E861E603956009A259F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
