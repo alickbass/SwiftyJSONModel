@@ -9,6 +9,21 @@
 /* Begin PBXBuildFile section */
 		CE2642BB1D9C1C53003E2447 /* JSONModelErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2642BA1D9C1C53003E2447 /* JSONModelErrorTests.swift */; };
 		CE54DE4E1E0D89790037D186 /* JSONModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54DE4D1E0D89790037D186 /* JSONModelError.swift */; };
+		CEA15E3F1E602EB4009A259F /* SwiftyJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CEA15E401E602EB4009A259F /* JSONTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453351D8DF9F900E5968A /* JSONTypes.swift */; };
+		CEA15E411E602EB4009A259F /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453271D8DC95E00E5968A /* JSONModel.swift */; };
+		CEA15E421E602EB4009A259F /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147C1D9055C000003F2F /* JSONObject.swift */; };
+		CEA15E431E602EB4009A259F /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C01D92F5BD000ADC24 /* JSONHelpers.swift */; };
+		CEA15E441E602EB4009A259F /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453291D8DCB6A00E5968A /* JSONExtension.swift */; };
+		CEA15E451E602EB4009A259F /* JSONModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54DE4D1E0D89790037D186 /* JSONModelError.swift */; };
+		CEA15E471E602F6C009A259F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E461E602F6C009A259F /* SwiftyJSON.framework */; };
+		CEA15E561E6031F1009A259F /* SwiftyJSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E281E602E2B009A259F /* SwiftyJSONModel.framework */; };
+		CEA15E5C1E60320B009A259F /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C21D931825000ADC24 /* TestData.swift */; };
+		CEA15E5D1E60320B009A259F /* SwiftyJSONModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */; };
+		CEA15E5E1E60320B009A259F /* JSONObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147E1D905D4F00003F2F /* JSONObjectTests.swift */; };
+		CEA15E5F1E60320B009A259F /* JSONExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */; };
+		CEA15E601E60320B009A259F /* JSONModelErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2642BA1D9C1C53003E2447 /* JSONModelErrorTests.swift */; };
+		CEA15E611E603298009A259F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E461E602F6C009A259F /* SwiftyJSON.framework */; };
 		CEE453111D8D801800E5968A /* SwiftyJSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453071D8D801800E5968A /* SwiftyJSONModel.framework */; };
 		CEE453161D8D801800E5968A /* SwiftyJSONModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */; };
 		CEE453181D8D801800E5968A /* SwiftyJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -26,6 +41,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CEA15E571E6031F1009A259F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEE452FE1D8D801800E5968A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEA15E271E602E2B009A259F;
+			remoteInfo = "SwiftyJSONModel-Mac";
+		};
 		CEE453121D8D801800E5968A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CEE452FE1D8D801800E5968A /* Project object */;
@@ -60,6 +82,9 @@
 /* Begin PBXFileReference section */
 		CE2642BA1D9C1C53003E2447 /* JSONModelErrorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONModelErrorTests.swift; sourceTree = "<group>"; };
 		CE54DE4D1E0D89790037D186 /* JSONModelError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONModelError.swift; sourceTree = "<group>"; };
+		CEA15E281E602E2B009A259F /* SwiftyJSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEA15E461E602F6C009A259F /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
+		CEA15E511E6031F1009A259F /* SwiftyJSONModelTests-Mac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftyJSONModelTests-Mac.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE453071D8D801800E5968A /* SwiftyJSONModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSONModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyJSONModel.h; sourceTree = "<group>"; };
 		CEE4530B1D8D801800E5968A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,6 +103,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CEA15E241E602E2B009A259F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E471E602F6C009A259F /* SwiftyJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEA15E4E1E6031F1009A259F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E561E6031F1009A259F /* SwiftyJSONModel.framework in Frameworks */,
+				CEA15E611E603298009A259F /* SwiftyJSON.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEE453031D8D801800E5968A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,6 +155,8 @@
 			children = (
 				CEE453071D8D801800E5968A /* SwiftyJSONModel.framework */,
 				CEE453101D8D801800E5968A /* SwiftyJSONModelTests.xctest */,
+				CEA15E281E602E2B009A259F /* SwiftyJSONModel.framework */,
+				CEA15E511E6031F1009A259F /* SwiftyJSONModelTests-Mac.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +192,7 @@
 		CEE453221D8DC68A00E5968A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEA15E461E602F6C009A259F /* SwiftyJSON.framework */,
 				CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
@@ -156,6 +201,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		CEA15E251E602E2B009A259F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E3F1E602EB4009A259F /* SwiftyJSONModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEE453041D8D801800E5968A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +220,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		CEA15E271E602E2B009A259F /* SwiftyJSONModel-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEA15E3D1E602E2B009A259F /* Build configuration list for PBXNativeTarget "SwiftyJSONModel-Mac" */;
+			buildPhases = (
+				CEA15E231E602E2B009A259F /* Sources */,
+				CEA15E241E602E2B009A259F /* Frameworks */,
+				CEA15E251E602E2B009A259F /* Headers */,
+				CEA15E261E602E2B009A259F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftyJSONModel-Mac";
+			productName = "SwiftyJSONModel-Mac";
+			productReference = CEA15E281E602E2B009A259F /* SwiftyJSONModel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CEA15E501E6031F1009A259F /* SwiftyJSONModelTests-Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEA15E591E6031F1009A259F /* Build configuration list for PBXNativeTarget "SwiftyJSONModelTests-Mac" */;
+			buildPhases = (
+				CEA15E4D1E6031F1009A259F /* Sources */,
+				CEA15E4E1E6031F1009A259F /* Frameworks */,
+				CEA15E4F1E6031F1009A259F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEA15E581E6031F1009A259F /* PBXTargetDependency */,
+			);
+			name = "SwiftyJSONModelTests-Mac";
+			productName = "SwiftyJSONModelTests-Mac";
+			productReference = CEA15E511E6031F1009A259F /* SwiftyJSONModelTests-Mac.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CEE453061D8D801800E5968A /* SwiftyJSONModel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEE4531B1D8D801800E5968A /* Build configuration list for PBXNativeTarget "SwiftyJSONModel" */;
@@ -211,10 +300,20 @@
 		CEE452FE1D8D801800E5968A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Oleksii Dykan";
 				TargetAttributes = {
+					CEA15E271E602E2B009A259F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 7H6SM4X3H7;
+						ProvisioningStyle = Automatic;
+					};
+					CEA15E501E6031F1009A259F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 7H6SM4X3H7;
+						ProvisioningStyle = Automatic;
+					};
 					CEE453061D8D801800E5968A = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 7H6SM4X3H7;
@@ -243,11 +342,27 @@
 			targets = (
 				CEE453061D8D801800E5968A /* SwiftyJSONModel */,
 				CEE4530F1D8D801800E5968A /* SwiftyJSONModelTests */,
+				CEA15E271E602E2B009A259F /* SwiftyJSONModel-Mac */,
+				CEA15E501E6031F1009A259F /* SwiftyJSONModelTests-Mac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CEA15E261E602E2B009A259F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEA15E4F1E6031F1009A259F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEE453051D8D801800E5968A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -265,6 +380,31 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CEA15E231E602E2B009A259F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E451E602EB4009A259F /* JSONModelError.swift in Sources */,
+				CEA15E401E602EB4009A259F /* JSONTypes.swift in Sources */,
+				CEA15E441E602EB4009A259F /* JSONExtension.swift in Sources */,
+				CEA15E431E602EB4009A259F /* JSONHelpers.swift in Sources */,
+				CEA15E421E602EB4009A259F /* JSONObject.swift in Sources */,
+				CEA15E411E602EB4009A259F /* JSONModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEA15E4D1E6031F1009A259F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEA15E5C1E60320B009A259F /* TestData.swift in Sources */,
+				CEA15E5F1E60320B009A259F /* JSONExtensionTests.swift in Sources */,
+				CEA15E5D1E60320B009A259F /* SwiftyJSONModelTests.swift in Sources */,
+				CEA15E601E60320B009A259F /* JSONModelErrorTests.swift in Sources */,
+				CEA15E5E1E60320B009A259F /* JSONObjectTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEE453021D8D801800E5968A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +433,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CEA15E581E6031F1009A259F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEA15E271E602E2B009A259F /* SwiftyJSONModel-Mac */;
+			targetProxy = CEA15E571E6031F1009A259F /* PBXContainerItemProxy */;
+		};
 		CEE453131D8D801800E5968A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CEE453061D8D801800E5968A /* SwiftyJSONModel */;
@@ -301,6 +446,102 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		CEA15E391E602E2B009A259F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7H6SM4X3H7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyJSONModel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.violentoctopus.SwiftyJSONModel;
+				PRODUCT_NAME = SwiftyJSONModel;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CEA15E3A1E602E2B009A259F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 7H6SM4X3H7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/SwiftyJSONModel/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.violentoctopus.SwiftyJSONModel;
+				PRODUCT_NAME = SwiftyJSONModel;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		CEA15E5A1E6031F1009A259F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7H6SM4X3H7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = SwiftyJSONModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/Mac";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.violentoctopus.SwiftyJSONModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CEA15E5B1E6031F1009A259F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7H6SM4X3H7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = SwiftyJSONModelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks $(PROJECT_DIR)/Carthage/Build/Mac";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.violentoctopus.SwiftyJSONModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		CEE453191D8D801800E5968A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -494,6 +735,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CEA15E3D1E602E2B009A259F /* Build configuration list for PBXNativeTarget "SwiftyJSONModel-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEA15E391E602E2B009A259F /* Debug */,
+				CEA15E3A1E602E2B009A259F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		CEA15E591E6031F1009A259F /* Build configuration list for PBXNativeTarget "SwiftyJSONModelTests-Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEA15E5A1E6031F1009A259F /* Debug */,
+				CEA15E5B1E6031F1009A259F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		CEE453011D8D801800E5968A /* Build configuration list for PBXProject "SwiftyJSONModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
