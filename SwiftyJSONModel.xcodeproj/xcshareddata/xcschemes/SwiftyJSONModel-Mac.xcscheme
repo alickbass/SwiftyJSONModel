@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CEA15E501E6031F1009A259F"
+               BuildableName = "SwiftyJSONModelTests-Mac.xctest"
+               BlueprintName = "SwiftyJSONModelTests-Mac"
+               ReferencedContainer = "container:SwiftyJSONModel.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CEA15E271E602E2B009A259F"
+            BuildableName = "SwiftyJSONModel.framework"
+            BlueprintName = "SwiftyJSONModel-Mac"
+            ReferencedContainer = "container:SwiftyJSONModel.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
