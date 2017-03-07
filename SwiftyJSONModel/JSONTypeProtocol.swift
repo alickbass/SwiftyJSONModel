@@ -16,6 +16,13 @@ public protocol JSONType {
     var array: [Self]? { get }
     var dictionary: [String: Self]? { get }
     
+    init(bool: Bool)
+    init(int: Int)
+    init(double: Double)
+    init(string: String)
+    init(array: [Self])
+    init(dictionary: [String: Self])
+    
     func value() throws -> Bool
     func value() throws -> Int
     func value() throws -> Double
