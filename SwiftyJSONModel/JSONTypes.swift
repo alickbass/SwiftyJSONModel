@@ -19,20 +19,20 @@ public protocol JSONRepresentable {
 
 extension String: JSONInitializable, JSONRepresentable {
     public init(json: JSON) throws { self = try json.value() }
-    public var jsonValue: JSON { return JSON(self) }
+    public var jsonValue: JSON { return JSON(string: self) }
 }
 
 extension Bool: JSONInitializable, JSONRepresentable {
     public init(json: JSON) throws { self = try json.value() }
-    public var jsonValue: JSON { return JSON(self) }
+    public var jsonValue: JSON { return JSON(bool: self) }
 }
 
 extension Int: JSONInitializable, JSONRepresentable {
     public init(json: JSON) throws { self = try json.value() }
-    public var jsonValue: JSON { return JSON(self) }
+    public var jsonValue: JSON { return JSON(int: self) }
 }
 
 extension Double: JSONInitializable, JSONRepresentable {
     public init(json: JSON) throws { self = try json.value() }
-    public var jsonValue: JSON { return JSON(self) }
+    public var jsonValue: JSON { return JSON(double: self) }
 }
