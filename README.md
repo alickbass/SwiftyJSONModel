@@ -6,6 +6,9 @@ A microframework that helps to use [Swifty JSON](https://github.com/SwiftyJSON/S
 [![codecov](https://codecov.io/gh/alickbass/SwiftyJSONModel/branch/master/graph/badge.svg)](https://codecov.io/gh/alickbass/SwiftyJSONModel)
 
 ##Motivation:
+
+###The full motivation and description is [here](https://gist.github.com/alickbass/b0683c175d6078d2a3bdb4ca005f56da)
+
 For the following `JSON`:
 
 ```json
