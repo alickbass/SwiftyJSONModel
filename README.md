@@ -7,7 +7,7 @@ A microframework that helps to use [Swifty JSON](https://github.com/SwiftyJSON/S
 
 ##Motivation:
 
-###The full motivation and description is [here](https://gist.github.com/alickbass/b0683c175d6078d2a3bdb4ca005f56da)
+###The full motivation and description is [here](https://medium.com/@alickdikan/type-safe-json-in-swift-with-swiftyjsonmodel-89d432a8c1ee#.d07xuncxy)
 
 For the following `JSON`:
 
