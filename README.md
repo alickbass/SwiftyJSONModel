@@ -5,9 +5,9 @@ A microframework that helps to use [Swifty JSON](https://github.com/SwiftyJSON/S
 [![Build Status](https://travis-ci.org/alickbass/SwiftyJSONModel.svg?branch=master)](https://travis-ci.org/alickbass/SwiftyJSONModel)
 [![codecov](https://codecov.io/gh/alickbass/SwiftyJSONModel/branch/master/graph/badge.svg)](https://codecov.io/gh/alickbass/SwiftyJSONModel)
 
-##Motivation:
+## Motivation:
 
-###The full motivation and description is [here](https://medium.com/@alickdikan/type-safe-json-in-swift-with-swiftyjsonmodel-89d432a8c1ee#.d07xuncxy)
+### The full motivation and description is [here](https://medium.com/@alickdikan/type-safe-json-in-swift-with-swiftyjsonmodel-89d432a8c1ee#.d07xuncxy)
 
 For the following `JSON`:
 
@@ -89,7 +89,7 @@ extension Person: JSONObjectInitializable {
 }
 ```
 
-##What we improved:
+## What we improved:
 * Keys are now restricted to the `PropertyKey` enum and we will have a compile error if we try to use something different.
 * Autocomplition will help us navigate through available keys
 * The constructor now `throws` which means that the init will fail if some value or it's type was different from what we expected and the `Error` will tell us exactly which property in `JSON` was wrong
@@ -97,7 +97,7 @@ extension Person: JSONObjectInitializable {
 
 #Integration
 
-##CocoaPods (iOS 8+)
+## CocoaPods (iOS 8+)
 
 You can use CocoaPods to install SwiftyJSONModel by adding it to your Podfile:
 
@@ -112,7 +112,7 @@ end
 
 Note that this requires CocoaPods version 36, and your iOS deployment target to be at least 8.0:
 
-##Carthage (iOS 8+)
+## Carthage (iOS 8+)
 
 You can use Carthage to install SwiftyJSONModel by adding it to your Cartfile:
 
