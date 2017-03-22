@@ -44,4 +44,11 @@ class JSONExtensionTests: XCTestCase {
         XCTAssertEqual(try! JSON(dictionary: json).dictionaryValue(), json)
     }
     
+    func testJSONConformanceToJSONProtocols() {
+        let json: JSON = ["Some"]
+        
+        XCTAssertEqual(JSON(json: json), json)
+        XCTAssertEqual(json.jsonValue, json)
+    }
+    
 }
