@@ -113,6 +113,33 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
 }
 
+// MARK: - Date Handling
+public protocol DateTransformer {
+    func date(from string: String) throws -> Date
+    func string(form date: Date) -> String
+}
+
+extension String: DateTransformer {
+    private static let dateFormatter = DateFormatter()
+    
+    private func formatter() -> DateFormatter {
+        let formatter = String.dateFormatter
+        formatter.dateFormat = self
+        return formatter
+    }
+    
+    public func date(from string: String) throws -> Date {
+        guard let date = formatter().date(from: string) else {
+            throw JSONModelError.invalidFormat
+        }
+        return date
+    }
+    
+    public func string(form date: Date) -> String {
+        return formatter().string(from: date)
+    }
+}
+
 // MARK: - JSONModelError
 public indirect enum JSONModelError: Error {
     case jsonIsNotAnObject
