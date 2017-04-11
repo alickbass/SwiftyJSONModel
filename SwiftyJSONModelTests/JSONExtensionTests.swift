@@ -51,4 +51,16 @@ class JSONExtensionTests: XCTestCase {
         XCTAssertEqual(json.jsonValue, json)
     }
     
+    
+    func testDateJSONExtension() {
+        let formatter = DateFormatter()
+        let format = "MM-dd-yyyy HH:mm"
+        let dateString = "04-11-2017 09:34"
+        
+        formatter.dateFormat = format
+        
+        let date = formatter.date(from: dateString)!
+        
+        XCTAssertEqual(date.json(with: format), dateString)
+    }
 }

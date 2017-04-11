@@ -82,6 +82,8 @@ extension Double: JSONInitializable, JSONRepresentable {
     public var jsonValue: JSON { return JSON(double: self) }
 }
 
+
+// MARK: - Handy extensions
 struct JSONArray<T: JSONRepresentable>: JSONRepresentable {
     let array: [T]
     
@@ -97,6 +99,12 @@ struct JSONArray<T: JSONRepresentable>: JSONRepresentable {
 public extension Array where Element: JSONRepresentable {
     public var jsonRepresantable: JSONRepresentable {
         return JSONArray<Element>(self)
+    }
+}
+
+public extension Date {
+    public func json(with transformer: DateTransformer) -> String {
+        return transformer.string(form: self)
     }
 }
 
