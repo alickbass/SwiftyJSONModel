@@ -18,7 +18,6 @@
 		CEA15E411E602EB4009A259F /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453271D8DC95E00E5968A /* JSONModel.swift */; };
 		CEA15E421E602EB4009A259F /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147C1D9055C000003F2F /* JSONObject.swift */; };
 		CEA15E431E602EB4009A259F /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C01D92F5BD000ADC24 /* JSONHelpers.swift */; };
-		CEA15E441E602EB4009A259F /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453291D8DCB6A00E5968A /* JSONExtension.swift */; };
 		CEA15E451E602EB4009A259F /* JSONModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54DE4D1E0D89790037D186 /* JSONModelError.swift */; };
 		CEA15E471E602F6C009A259F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E461E602F6C009A259F /* SwiftyJSON.framework */; };
 		CEA15E561E6031F1009A259F /* SwiftyJSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E281E602E2B009A259F /* SwiftyJSONModel.framework */; };
@@ -33,7 +32,6 @@
 		CEA15E711E60357B009A259F /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453271D8DC95E00E5968A /* JSONModel.swift */; };
 		CEA15E721E60357B009A259F /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147C1D9055C000003F2F /* JSONObject.swift */; };
 		CEA15E731E60357B009A259F /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C01D92F5BD000ADC24 /* JSONHelpers.swift */; };
-		CEA15E741E60357B009A259F /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453291D8DCB6A00E5968A /* JSONExtension.swift */; };
 		CEA15E751E60357B009A259F /* JSONModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54DE4D1E0D89790037D186 /* JSONModelError.swift */; };
 		CEA15E771E6035D5009A259F /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E761E6035D5009A259F /* SwiftyJSON.framework */; };
 		CEA15E811E603956009A259F /* SwiftyJSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEA15E671E603556009A259F /* SwiftyJSONModel.framework */; };
@@ -49,14 +47,12 @@
 		CEA15E9E1E6049EA009A259F /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453271D8DC95E00E5968A /* JSONModel.swift */; };
 		CEA15E9F1E6049EA009A259F /* JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8147C1D9055C000003F2F /* JSONObject.swift */; };
 		CEA15EA01E6049EA009A259F /* JSONHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFB60C01D92F5BD000ADC24 /* JSONHelpers.swift */; };
-		CEA15EA11E6049EA009A259F /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453291D8DCB6A00E5968A /* JSONExtension.swift */; };
 		CEA15EA21E6049EA009A259F /* JSONModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54DE4D1E0D89790037D186 /* JSONModelError.swift */; };
 		CEE453111D8D801800E5968A /* SwiftyJSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453071D8D801800E5968A /* SwiftyJSONModel.framework */; };
 		CEE453161D8D801800E5968A /* SwiftyJSONModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453151D8D801800E5968A /* SwiftyJSONModelTests.swift */; };
 		CEE453181D8D801800E5968A /* SwiftyJSONModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE4530A1D8D801800E5968A /* SwiftyJSONModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CEE453241D8DC68A00E5968A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; };
 		CEE453281D8DC95E00E5968A /* JSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453271D8DC95E00E5968A /* JSONModel.swift */; };
-		CEE4532A1D8DCB6A00E5968A /* JSONExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE453291D8DCB6A00E5968A /* JSONExtension.swift */; };
 		CEE4532C1D8DD06100E5968A /* JSONExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */; };
 		CEE4532D1D8DD0E100E5968A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; };
 		CEE453301D8DD46B00E5968A /* SwiftyJSON.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -133,7 +129,6 @@
 		CEE453171D8D801800E5968A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEE453231D8DC68A00E5968A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		CEE453271D8DC95E00E5968A /* JSONModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONModel.swift; sourceTree = "<group>"; };
-		CEE453291D8DCB6A00E5968A /* JSONExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtension.swift; sourceTree = "<group>"; };
 		CEE4532B1D8DD06100E5968A /* JSONExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONExtensionTests.swift; sourceTree = "<group>"; };
 		CEE453351D8DF9F900E5968A /* JSONTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTypes.swift; sourceTree = "<group>"; };
 		CEF8147C1D9055C000003F2F /* JSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObject.swift; sourceTree = "<group>"; };
@@ -238,7 +233,6 @@
 				CEE453271D8DC95E00E5968A /* JSONModel.swift */,
 				CEF8147C1D9055C000003F2F /* JSONObject.swift */,
 				CEFB60C01D92F5BD000ADC24 /* JSONHelpers.swift */,
-				CEE453291D8DCB6A00E5968A /* JSONExtension.swift */,
 				CE54DE4D1E0D89790037D186 /* JSONModelError.swift */,
 				CEE4530B1D8D801800E5968A /* Info.plist */,
 			);
@@ -566,7 +560,6 @@
 			files = (
 				CEA15E451E602EB4009A259F /* JSONModelError.swift in Sources */,
 				CEA15E401E602EB4009A259F /* JSONTypes.swift in Sources */,
-				CEA15E441E602EB4009A259F /* JSONExtension.swift in Sources */,
 				CEA15E431E602EB4009A259F /* JSONHelpers.swift in Sources */,
 				CEA15E421E602EB4009A259F /* JSONObject.swift in Sources */,
 				CE400C4B1E6EB0CF00CBBE8A /* JSONTypeProtocol.swift in Sources */,
@@ -592,7 +585,6 @@
 			files = (
 				CEA15E751E60357B009A259F /* JSONModelError.swift in Sources */,
 				CEA15E701E60357B009A259F /* JSONTypes.swift in Sources */,
-				CEA15E741E60357B009A259F /* JSONExtension.swift in Sources */,
 				CEA15E731E60357B009A259F /* JSONHelpers.swift in Sources */,
 				CEA15E721E60357B009A259F /* JSONObject.swift in Sources */,
 				CE400C4C1E6EB0CF00CBBE8A /* JSONTypeProtocol.swift in Sources */,
@@ -618,7 +610,6 @@
 			files = (
 				CEA15EA21E6049EA009A259F /* JSONModelError.swift in Sources */,
 				CEA15E9D1E6049EA009A259F /* JSONTypes.swift in Sources */,
-				CEA15EA11E6049EA009A259F /* JSONExtension.swift in Sources */,
 				CEA15EA01E6049EA009A259F /* JSONHelpers.swift in Sources */,
 				CEA15E9F1E6049EA009A259F /* JSONObject.swift in Sources */,
 				CE400C4D1E6EB0CF00CBBE8A /* JSONTypeProtocol.swift in Sources */,
@@ -636,7 +627,6 @@
 				CEE453281D8DC95E00E5968A /* JSONModel.swift in Sources */,
 				CEF8147D1D9055C000003F2F /* JSONObject.swift in Sources */,
 				CE400C4A1E6EB0CF00CBBE8A /* JSONTypeProtocol.swift in Sources */,
-				CEE4532A1D8DCB6A00E5968A /* JSONExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
