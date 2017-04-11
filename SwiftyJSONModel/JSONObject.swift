@@ -52,6 +52,10 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     // MARK: - Value for keypath with custom tranform
+    public func value<T>(for keyPath: PropertyType..., _ transform: (JSON) throws -> T) throws -> T {
+        return try value(for: keyPath, transform)
+    }
+    
     private func value<T>(for keyPath: [PropertyType], _ transform: (JSON) throws -> T) throws -> T {
         assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
         

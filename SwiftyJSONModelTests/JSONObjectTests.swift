@@ -119,6 +119,8 @@ class JSONObjectTests: XCTestCase {
             XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: first,  .invalidValueFor(key: second, .invalidValueFor(key: array, .invalidValueFor(key: "0", .invalidElement)))))
         }
         
+        XCTAssertEqual(try? object.value(for: .first, .second, .third) { $0.intValue }, 3)
+        
         XCTAssertEqual(object.value(for: .first, .second, .third) as Int?, 3)
         XCTAssertNil(object.value(for: .first, .second, .third) as String?)
         XCTAssertEqual((object.value(for: .first, .second, .array) as [Int]?)!, [1, 2, 3])
