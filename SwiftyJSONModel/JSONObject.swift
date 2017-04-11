@@ -117,13 +117,14 @@ public extension JSONObject where PropertyType.RawValue == String {
 public indirect enum JSONModelError: Error {
     case jsonIsNotAnObject
     case invalidElement
+    case invalidFormat
     case invalidValueFor(key: String, JSONModelError)
 }
 
 extension JSONModelError: Equatable {
     public static func == (lhs: JSONModelError, rhs: JSONModelError) -> Bool {
         switch (lhs, rhs) {
-        case (.jsonIsNotAnObject, .jsonIsNotAnObject), (.invalidElement, .invalidElement):
+        case (.jsonIsNotAnObject, .jsonIsNotAnObject), (.invalidElement, .invalidElement), (.invalidFormat, .invalidFormat):
             return true
         case let (.invalidValueFor(leftKey, leftError), .invalidValueFor(rightKey, rightError)):
             return leftKey == rightKey && leftError == rightError
@@ -140,6 +141,8 @@ extension JSONModelError: CustomStringConvertible {
             return "JSON is not an object"
         case .invalidElement:
             return "Invalid element"
+        case .invalidFormat:
+            return "Invalid format"
         case let .invalidValueFor(key: key, error):
             var stringValue = "[\(key)]"
             

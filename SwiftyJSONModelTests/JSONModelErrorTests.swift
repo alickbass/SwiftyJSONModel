@@ -14,6 +14,7 @@ class JSONModelErrorTests: XCTestCase {
     func testErrorEquatable() {
         XCTAssertEqual(JSONModelError.invalidElement, .invalidElement)
         XCTAssertEqual(JSONModelError.jsonIsNotAnObject, .jsonIsNotAnObject)
+        XCTAssertEqual(JSONModelError.invalidFormat, .invalidFormat)
         XCTAssertEqual(JSONModelError.invalidValueFor(key: "test", .invalidElement), .invalidValueFor(key: "test", .invalidElement))
         
         XCTAssertNotEqual(JSONModelError.invalidValueFor(key: "test", .invalidElement), .invalidValueFor(key: "other", .invalidElement))
@@ -25,6 +26,7 @@ class JSONModelErrorTests: XCTestCase {
         let desiredDescription = "[country][city][name]: Invalid element"
         let error = JSONModelError.invalidValueFor(key: "country", .invalidValueFor(key: "city", .invalidValueFor(key: "name", .invalidElement)))
         XCTAssertEqual(error.description, desiredDescription)
+        XCTAssertEqual(JSONModelError.invalidFormat.description, "Invalid format")
         
         let objectErrorString = "[country]: \(JSONModelError.jsonIsNotAnObject.description)"
         XCTAssertEqual(JSONModelError.invalidValueFor(key: "country", .jsonIsNotAnObject).description, objectErrorString)
