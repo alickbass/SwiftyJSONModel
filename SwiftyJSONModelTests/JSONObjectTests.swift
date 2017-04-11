@@ -144,4 +144,24 @@ class JSONObjectTests: XCTestCase {
             XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: first,  .invalidValueFor(key: second, .invalidValueFor(key: third, .invalidElement))))
         }
     }
+    
+    func testJSONObjectDateValues() {
+        enum PropertyKey: String {
+            case date, notProperDate
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd-yyyy HH:mm"
+        
+        let format = "MM-dd-yyyy HH:mm"
+        let dateString = "04-11-2017 09:34"
+        let dateJSON: JSON = ["date": JSON(dateString), "notProperDate": "04-11-2017"]
+        let object = try! JSONObject<PropertyKey>(json: dateJSON)
+        
+        XCTAssertEqual(try! object.value(for: .date, with: format), formatter.date(from: dateString)!)
+        XCTAssertNil(object.value(for: .notProperDate, with: format))
+        XCTAssertThrowsError(try object.value(for: .notProperDate, with: format)) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PropertyKey.notProperDate.rawValue, .invalidFormat))
+        }
+    }
 }

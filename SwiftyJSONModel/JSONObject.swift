@@ -98,6 +98,15 @@ public extension JSONObject where PropertyType.RawValue == String {
         }
     }
     
+    // MARK: - Value for keypath - Date
+    public func value(for keyPath: PropertyType..., with transformer: DateTransformer) throws -> Date {
+        return try value(for: keyPath, with: transformer)
+    }
+    
+    private func value(for keyPath: [PropertyType], with transformer: DateTransformer) throws -> Date {
+        return try value(for: keyPath) { try transformer.date(from: try $0.value()) }
+    }
+    
     // MARK: - Value for keypath - flattened array
     public func flatMap<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T] {
         return try value(for: keyPath) { try $0.arrayValue().lazy.flatMap({ try? T(json: $0) }) }
@@ -110,6 +119,10 @@ public extension JSONObject where PropertyType.RawValue == String {
     
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> [T]? {
         return try? value(for: keyPath)
+    }
+    
+    public func value(for keyPath: PropertyType..., with transformer: DateTransformer) -> Date? {
+        return try? value(for: keyPath, with: transformer)
     }
 }
 
