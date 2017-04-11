@@ -98,6 +98,15 @@ public extension JSONObject where PropertyType.RawValue == String {
         }
     }
     
+    // MARK: - Value for keypath - Date
+    public func value(for keyPath: PropertyType..., with transformer: DateTransformer) throws -> Date {
+        return try value(for: keyPath, with: transformer)
+    }
+    
+    private func value(for keyPath: [PropertyType], with transformer: DateTransformer) throws -> Date {
+        return try value(for: keyPath) { try transformer.date(from: try $0.value()) }
+    }
+    
     // MARK: - Value for keypath - flattened array
     public func flatMap<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T] {
         return try value(for: keyPath) { try $0.arrayValue().lazy.flatMap({ try? T(json: $0) }) }
@@ -110,5 +119,80 @@ public extension JSONObject where PropertyType.RawValue == String {
     
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> [T]? {
         return try? value(for: keyPath)
+    }
+    
+    public func value(for keyPath: PropertyType..., with transformer: DateTransformer) -> Date? {
+        return try? value(for: keyPath, with: transformer)
+    }
+}
+
+// MARK: - Date Handling
+public protocol DateTransformer {
+    func date(from string: String) throws -> Date
+    func string(form date: Date) -> String
+}
+
+extension String: DateTransformer {
+    private static let dateFormatter = DateFormatter()
+    
+    private func formatter() -> DateFormatter {
+        let formatter = String.dateFormatter
+        formatter.dateFormat = self
+        return formatter
+    }
+    
+    public func date(from string: String) throws -> Date {
+        guard let date = formatter().date(from: string) else {
+            throw JSONModelError.invalidFormat
+        }
+        return date
+    }
+    
+    public func string(form date: Date) -> String {
+        return formatter().string(from: date)
+    }
+}
+
+// MARK: - JSONModelError
+public indirect enum JSONModelError: Error {
+    case jsonIsNotAnObject
+    case invalidElement
+    case invalidFormat
+    case invalidValueFor(key: String, JSONModelError)
+}
+
+extension JSONModelError: Equatable {
+    public static func == (lhs: JSONModelError, rhs: JSONModelError) -> Bool {
+        switch (lhs, rhs) {
+        case (.jsonIsNotAnObject, .jsonIsNotAnObject), (.invalidElement, .invalidElement), (.invalidFormat, .invalidFormat):
+            return true
+        case let (.invalidValueFor(leftKey, leftError), .invalidValueFor(rightKey, rightError)):
+            return leftKey == rightKey && leftError == rightError
+        default:
+            return false
+        }
+    }
+}
+
+extension JSONModelError: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .jsonIsNotAnObject:
+            return "JSON is not an object"
+        case .invalidElement:
+            return "Invalid element"
+        case .invalidFormat:
+            return "Invalid format"
+        case let .invalidValueFor(key: key, error):
+            var stringValue = "[\(key)]"
+            
+            if case .invalidValueFor(_) = error {
+                stringValue.append(error.description)
+            } else {
+                stringValue.append(": \(error.description)")
+            }
+            
+            return stringValue
+        }
     }
 }
