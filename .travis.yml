@@ -4,11 +4,11 @@ osx_image: xcode8.2
 before_install:
   - brew update
   - brew outdated carthage || brew upgrade carthage
-  - carthage bootstrap --verbose
+  - carthage bootstrap --verbose --platform iOS --no-use-binaries --cache-builds
 
 script:
-  - open -a "simulator" --args -CurrentDeviceUDID AD8E8C76-910E-437D-88C2-4D6F6EBE3355
-  - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -destination 'platform=iOS Simulator,OS=10.2,id=AD8E8C76-910E-437D-88C2-4D6F6EBE3355'
+  - open -a "simulator" --args -CurrentDeviceUDID 34FA4749-C467-4D45-9F8E-E31AEDDC39C2
+  - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -destination 'platform=iOS Simulator,OS=10.2,id=34FA4749-C467-4D45-9F8E-E31AEDDC39C2'
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
