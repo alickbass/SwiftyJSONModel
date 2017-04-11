@@ -51,70 +51,56 @@ public extension JSONObject where PropertyType.RawValue == String {
         }
     }
     
+    // MARK: - Value for keypath with custom tranform
+    public func value<T>(for keyPath: PropertyType..., _ transform: (JSON) throws -> T) throws -> T {
+        return try value(for: keyPath, transform)
+    }
+    
+    private func value<T>(for keyPath: [PropertyType], _ transform: (JSON) throws -> T) throws -> T {
+        assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
+        
+        let key = keyPath[0]
+        do {
+            if keyPath.count == 1 {
+                return try transform(self[key])
+            } else {
+                let subPath: [PropertyType] = .init(keyPath[1..<keyPath.count])
+                return try JSONObject<PropertyType>(json: self[key]).value(for: subPath, transform)
+            }
+        } catch let error as JSONModelError {
+            throw JSONModelError.invalidValueFor(key: key.rawValue, error)
+        }
+    }
+    
+    // MARK: - Value for keypath - single object
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> T {
         return try value(for: keyPath)
     }
     
     private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> T {
-        assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
-        
-        let key = keyPath[0]
-        do {
-            if keyPath.count == 1 {
-                return try T(json: self[key])
-            } else {
-                let subPath: [PropertyType] = .init(keyPath[1..<keyPath.count])
-                return try JSONObject<PropertyType>(json: self[key]).value(for: subPath)
-            }
-        } catch let error as JSONModelError {
-            throw JSONModelError.invalidValueFor(key: key.rawValue, error)
-        }
+        return try value(for: keyPath, T.init)
     }
     
+    // MARK: - Value for keypath - array
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T] {
         return try value(for: keyPath)
     }
     
     private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [T] {
-        assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
-        
-        let key = keyPath[0]
-        do {
-            if keyPath.count == 1 {
-                return try self[key].arrayValue().enumerated().lazy.map({ index, json in
-                    do {
-                        return try T(json: json)
-                    } catch let error as JSONModelError {
-                        throw JSONModelError.invalidValueFor(key: String(index), error)
-                    }
-                })
-            } else {
-                let subPath: [PropertyType] = .init(keyPath[1..<keyPath.count])
-                return try JSONObject<PropertyType>(json: self[key]).value(for: subPath)
-            }
-        } catch let error as JSONModelError {
-            throw JSONModelError.invalidValueFor(key: key.rawValue, error)
+        return try value(for: keyPath) {
+            try $0.arrayValue().enumerated().lazy.map({ index, json in
+                do {
+                    return try T(json: json)
+                } catch let error as JSONModelError {
+                    throw JSONModelError.invalidValueFor(key: String(index), error)
+                }
+            })
         }
     }
     
+    // MARK: - Value for keypath - flattened array
     public func flatMap<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T] {
-        return try flatMap(for: keyPath)
-    }
-    
-    private func flatMap<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [T] {
-        assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
-        
-        let key = keyPath[0]
-        do {
-            if keyPath.count == 1 {
-                return try self[key].arrayValue().lazy.flatMap({ try? T(json: $0) })
-            } else {
-                let subPath: [PropertyType] = .init(keyPath[1..<keyPath.count])
-                return try JSONObject<PropertyType>(json: self[key]).flatMap(for: subPath)
-            }
-        } catch let error as JSONModelError {
-            throw JSONModelError.invalidValueFor(key: key.rawValue, error)
-        }
+        return try value(for: keyPath) { try $0.arrayValue().lazy.flatMap({ try? T(json: $0) }) }
     }
     
     // MARK: - Optional methods
