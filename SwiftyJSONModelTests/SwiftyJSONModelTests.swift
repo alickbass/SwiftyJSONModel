@@ -44,6 +44,10 @@ func == (left: Person, right: Person) -> Bool {
            left.age == right.age && left.isMarried == right.isMarried && left.height == right.height
 }
 
+enum SomeEnum: String, JSONString {
+    case one, two, three
+}
+
 class SwiftyJSONModelTests: XCTestCase {
     
     func testJSONModelProtocols() {
@@ -58,6 +62,12 @@ class SwiftyJSONModelTests: XCTestCase {
         noHobbiesJSON[Person.PropertyKey.hobbies.rawValue] = .null
         
         XCTAssertEqual((try? Person(json: noHobbiesJSON))?.jsonValue, noHobbiesJSON)
+    }
+    
+    func testJSONString() {
+        XCTAssertEqual(try? SomeEnum(json: "one"), .one)
+        XCTAssertNil(try? SomeEnum(json: "randomString"))
+        XCTAssertEqual(SomeEnum.one.jsonValue, "one")
     }
     
 }
