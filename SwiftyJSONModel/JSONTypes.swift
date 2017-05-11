@@ -141,6 +141,24 @@ public extension JSONType {
     }
 }
 
+public protocol JSONString: RawRepresentable, JSONInitializable, JSONRepresentable {
+    init?(rawValue: String)
+    var rawValue: String { get }
+}
+
+public extension JSONString {
+    public init(json: JSON) throws {
+        guard let object = Self.init(rawValue: try String(json: json) ) else {
+            throw JSONModelError.invalidElement
+        }
+        self = object
+    }
+    
+    public var jsonValue: JSON {
+        return rawValue.jsonValue
+    }
+}
+
 extension JSON: JSONType {
     public init(bool: Bool) { self.init(bool) }
     public init(int: Int) { self.init(int) }
