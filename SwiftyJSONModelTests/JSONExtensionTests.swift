@@ -42,6 +42,8 @@ class JSONExtensionTests: XCTestCase {
         
         let json: [String: JSON] = ["SomeKey": "SomeValue"]
         XCTAssertEqual(try! JSON(dictionary: json).dictionaryValue(), json)
+        
+        XCTAssertEqual(["SomeKey": "SomeValue"].jsonRepresantable.jsonValue, ["SomeKey": "SomeValue"])
     }
     
     func testJSONConformanceToJSONProtocols() {

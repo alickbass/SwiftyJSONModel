@@ -102,6 +102,26 @@ public extension Array where Element: JSONRepresentable {
     }
 }
 
+struct JSONDict<T: JSONRepresentable>: JSONRepresentable {
+    let dict: [String: T]
+    
+    init(_ dict: [String: T]) {
+        self.dict = dict
+    }
+    
+    var jsonValue: JSON {
+        var result: [String: JSON] = [:]
+        dict.forEach({ result[$0] = $1.jsonValue })
+        return JSON(dictionary: result)
+    }
+}
+
+public extension Dictionary where Key == String, Value: JSONRepresentable {
+    public var jsonRepresantable: JSONRepresentable {
+        return JSONDict<Value>(self)
+    }
+}
+
 public extension Date {
     public func json(with transformer: DateTransformer) -> String {
         return transformer.string(form: self)
