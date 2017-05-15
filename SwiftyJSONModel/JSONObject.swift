@@ -88,13 +88,32 @@ public extension JSONObject where PropertyType.RawValue == String {
     
     private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [T] {
         return try value(for: keyPath) {
-            try $0.arrayValue().enumerated().lazy.map({ index, json in
+            try $0.arrayValue().lazy.enumerated().map({ index, json in
                 do {
                     return try T(json: json)
                 } catch let error as JSONModelError {
                     throw JSONModelError.invalidValueFor(key: String(index), error)
                 }
             })
+        }
+    }
+    
+    // MARK: - Value for keypath - Dictionary
+    public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [String: T] {
+        return try value(for: keyPath)
+    }
+    
+    private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [String: T] {
+        return try value(for: keyPath) {
+            var result: [String: T] = [:]
+            try $0.dictionaryValue().forEach({ key, json in
+                do {
+                    result[key] = try T(json: json)
+                } catch let error as JSONModelError {
+                    throw JSONModelError.invalidValueFor(key: key, error)
+                }
+            })
+            return result
         }
     }
     
@@ -118,6 +137,10 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> [T]? {
+        return try? value(for: keyPath)
+    }
+    
+    public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> [String: T]? {
         return try? value(for: keyPath)
     }
     
