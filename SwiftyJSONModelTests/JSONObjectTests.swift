@@ -49,6 +49,20 @@ class JSONObjectTests: XCTestCase {
         }
     }
     
+    func testDictionaryValue() {
+        enum Key: String { case some }
+        let object = try! JSONObject<Key>(json: ["some": ["one": 1, "two": 2]])
+        
+        XCTAssertEqual(try! object.value(for: .some), ["one": 1, "two": 2])
+        XCTAssertNotNil(object.value(for: .some) as [String: Int]?)
+        
+        let otherObject = try! JSONObject<Key>(json: ["some": ["one": "1", "two": "2"]])
+        
+        XCTAssertThrowsError(try otherObject.value(for: .some) as [String: Int]) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: Key.some.rawValue, .invalidValueFor(key: "one", .invalidElement)))
+        }
+    }
+    
     func testJSONObjectOptionalValueForKey() {
         let jsonObject = try! JSONObject<Person.PropertyKey>(json: Data.person.jsonValue)
         let emptyJsonObject = try! JSONObject<Person.PropertyKey>(json: JSON([String: JSON]()))
