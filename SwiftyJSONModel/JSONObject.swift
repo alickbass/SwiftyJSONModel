@@ -87,15 +87,7 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [T] {
-        return try value(for: keyPath) {
-            try $0.arrayValue().lazy.enumerated().map({ index, json in
-                do {
-                    return try T(json: json)
-                } catch let error as JSONModelError {
-                    throw JSONModelError.invalidValueFor(key: String(index), error)
-                }
-            })
-        }
+        return try value(for: keyPath) { try Array(json: $0) }
     }
     
     // MARK: - Value for keypath - Dictionary
