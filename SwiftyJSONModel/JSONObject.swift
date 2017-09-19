@@ -96,17 +96,7 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [String: T] {
-        return try value(for: keyPath) {
-            var result: [String: T] = [:]
-            try $0.dictionaryValue().forEach({ key, json in
-                do {
-                    result[key] = try T(json: json)
-                } catch let error as JSONModelError {
-                    throw JSONModelError.invalidValueFor(key: key, error)
-                }
-            })
-            return result
-        }
+        return try value(for: keyPath) { try Dictionary(json: $0) }
     }
     
     // MARK: - Value for keypath - Date

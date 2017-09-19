@@ -134,6 +134,20 @@ public extension Dictionary where Key == String, Value: JSONRepresentable {
     }
 }
 
+public extension Dictionary where Key == String, Value: JSONInitializable {
+    public init(json: JSON) throws {
+        var result: [String: Value] = [:]
+        try json.dictionaryValue().forEach({ key, json in
+            do {
+                result[key] = try Value(json: json)
+            } catch let error as JSONModelError {
+                throw JSONModelError.invalidValueFor(key: key, error)
+            }
+        })
+        self = result
+    }
+}
+
 public extension Date {
     public func json(with transformer: DateTransformer) -> String {
         return transformer.string(form: self)
