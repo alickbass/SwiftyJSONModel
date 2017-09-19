@@ -102,6 +102,18 @@ public extension Array where Element: JSONRepresentable {
     }
 }
 
+public extension Array where Element: JSONInitializable {
+    public init(json: JSON) throws {
+        self = try json.arrayValue().lazy.enumerated().map({ index, json in
+            do {
+                return try Element(json: json)
+            } catch let error as JSONModelError {
+                throw JSONModelError.invalidValueFor(key: String(index), error)
+            }
+        })
+    }
+}
+
 struct JSONDict<T: JSONRepresentable>: JSONRepresentable {
     let dict: [String: T]
     
@@ -119,6 +131,20 @@ struct JSONDict<T: JSONRepresentable>: JSONRepresentable {
 public extension Dictionary where Key == String, Value: JSONRepresentable {
     public var jsonRepresantable: JSONRepresentable {
         return JSONDict<Value>(self)
+    }
+}
+
+public extension Dictionary where Key == String, Value: JSONInitializable {
+    public init(json: JSON) throws {
+        var result: [String: Value] = [:]
+        try json.dictionaryValue().forEach({ key, json in
+            do {
+                result[key] = try Value(json: json)
+            } catch let error as JSONModelError {
+                throw JSONModelError.invalidValueFor(key: key, error)
+            }
+        })
+        self = result
     }
 }
 
