@@ -8,11 +8,37 @@ cache:
 before_install:
   - brew update
   - brew outdated carthage || brew upgrade carthage
-  - carthage bootstrap --verbose --platform iOS --no-use-binaries --cache-builds
 
 script:
-  - open -a "simulator" --args -CurrentDeviceUDID 99F4F45C-3B72-4473-A6C5-3FD81EF3C25D
-  - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -destination 'platform=iOS Simulator,OS=10.3,id=99F4F45C-3B72-4473-A6C5-3FD81EF3C25D'
+  - open -a "simulator" --args -CurrentDeviceUDID F60B87EC-8969-41A7-90ED-D0826ECC32DB
+  - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -destination 'platform=iOS Simulator,OS=10.3.1,id=F60B87EC-8969-41A7-90ED-D0826ECC32DB'
+
+matrix:
+  include:
+    - before_install:
+        - carthage bootstrap --verbose --platform iOS --no-use-binaries --cache-builds
+      script:
+        - open -a "simulator" --args -CurrentDeviceUDID F60B87EC-8969-41A7-90ED-D0826ECC32DB
+        - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -destination 'platform=iOS Simulator,OS=10.3.1,id=F60B87EC-8969-41A7-90ED-D0826ECC32DB'
+      env: CACHE_NAME=IOS
+
+    - before_install:
+        - carthage bootstrap --verbose --platform tvOS --no-use-binaries --cache-builds
+      script:
+        - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel-tvOS -destination 'platform=tvOS Simulator,OS=10.2,name=Apple TV 1080p'
+      env: CACHE_NAME=TV_OS
+
+    - before_install:
+        - carthage bootstrap --verbose --platform Mac --no-use-binaries --cache-builds
+      script:
+        - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel-Mac
+      env: CACHE_NAME=MAC
+
+    - before_install:
+        - carthage bootstrap --verbose --no-use-binaries --platform watchOS --cache-builds
+      script:
+        - xcodebuild clean build -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel-watchOS
+      env: CACHE_NAME=WATCH_OS
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
