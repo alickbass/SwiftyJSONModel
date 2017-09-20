@@ -11,8 +11,8 @@ before_install:
   - carthage bootstrap --verbose --platform iOS --no-use-binaries --cache-builds
 
 script:
-  - open -a "simulator" --args -CurrentDeviceUDID 99F4F45C-3B72-4473-A6C5-3FD81EF3C25D
-  - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -destination 'platform=iOS Simulator,OS=10.3,id=99F4F45C-3B72-4473-A6C5-3FD81EF3C25D'
+  - open -a "simulator" --args -CurrentDeviceUDID F60B87EC-8969-41A7-90ED-D0826ECC32DB
+  - xcodebuild clean build test -project SwiftyJSONModel.xcodeproj -scheme SwiftyJSONModel -destination 'platform=iOS Simulator,OS=10.3.1,id=F60B87EC-8969-41A7-90ED-D0826ECC32DB'
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
