@@ -52,11 +52,11 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     // MARK: - Value for keypath with custom tranform
-    public func value<T>(for keyPath: PropertyType..., _ transform: (JSON) throws -> T) throws -> T {
-        return try value(for: keyPath, transform)
+    public func value<T>(for keyPath: PropertyType..., with transform: (JSON) throws -> T) throws -> T {
+        return try value(for: keyPath, with: transform)
     }
     
-    private func value<T>(for keyPath: [PropertyType], _ transform: (JSON) throws -> T) throws -> T {
+    private func value<T>(for keyPath: [PropertyType], with transform: (JSON) throws -> T) throws -> T {
         assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
         
         let key = keyPath[0]
@@ -65,7 +65,7 @@ public extension JSONObject where PropertyType.RawValue == String {
                 return try transform(self[key])
             } else {
                 let subPath: [PropertyType] = .init(keyPath[1..<keyPath.count])
-                return try JSONObject<PropertyType>(json: self[key]).value(for: subPath, transform)
+                return try JSONObject<PropertyType>(json: self[key]).value(for: subPath, with: transform)
             }
         } catch let error as JSONModelError {
             throw JSONModelError.invalidValueFor(key: key.rawValue, error)
@@ -78,7 +78,7 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> T {
-        return try value(for: keyPath, T.init)
+        return try value(for: keyPath, with: T.init)
     }
     
     // MARK: - Value for keypath - array
