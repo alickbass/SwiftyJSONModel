@@ -71,7 +71,7 @@ extension Person {
 ```swift
 import SwiftyJSONModel
 
-extension Person: JSONObjectInitializable {
+extension Person: JSONModelType {
     enum PropertyKey: String {
         case name, age, isMarried, height, hobbies
         case address, country, city
@@ -85,6 +85,18 @@ extension Person: JSONObjectInitializable {
         city = try object.value(for: .address, .city) // Accessing nested json
         country = try object.value(for: .address, .country) // Accessing nested json
         hobbies = object.value(for: .hobbies)
+    }
+    
+    var dictValue: [PropertyKey : JSONRepresentable?] {
+        return [
+            .name: name,
+            .age: age,
+            .isMarried: isMarried,
+            .height: height,
+            .city: city,
+            .country: country,
+            .hobbies: hobbies?.jsonRepresantable,
+        ]
     }
 }
 ```
