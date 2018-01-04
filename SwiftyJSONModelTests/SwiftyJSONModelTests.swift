@@ -30,7 +30,7 @@ extension Person: JSONModelType {
         age = try object.value(for: .age)
         isMarried = try object.value(for: .isMarried)
         height = try object.value(for: .height)
-        hobbies = object.value(for: .hobbies)
+        hobbies = try object.value(for: .hobbies)
     }
     
     var dictValue: [PropertyKey : JSONRepresentable?] {
