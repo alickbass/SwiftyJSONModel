@@ -84,7 +84,7 @@ extension Person: JSONModelType {
         height = try object.value(for: .height)
         city = try object.value(for: .address, .city) // Accessing nested json
         country = try object.value(for: .address, .country) // Accessing nested json
-        hobbies = object.value(for: .hobbies)
+        hobbies = try object.value(for: .hobbies)
     }
     
     var dictValue: [PropertyKey : JSONRepresentable?] {
