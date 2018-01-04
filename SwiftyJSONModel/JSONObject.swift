@@ -56,6 +56,10 @@ public extension JSONObject where PropertyType.RawValue == String {
         return try value(for: keyPath, with: transform)
     }
     
+    public func value<T>(for keyPath: PropertyType..., with transform: (JSON) throws -> T) throws -> T? {
+        return try value(for: keyPath, with: transform)
+    }
+    
     private func value<T>(for keyPath: [PropertyType], with transform: (JSON) throws -> T) throws -> T {
         assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
         
@@ -64,12 +68,23 @@ public extension JSONObject where PropertyType.RawValue == String {
             if keyPath.count == 1 {
                 return try transform(self[key])
             } else {
-                let subPath: [PropertyType] = .init(keyPath[1..<keyPath.count])
+                let subPath: [PropertyType] = Array(keyPath[1..<keyPath.count])
                 return try JSONObject<PropertyType>(json: self[key]).value(for: subPath, with: transform)
             }
         } catch let error as JSONModelError {
             throw JSONModelError.invalidValueFor(key: key.rawValue, error)
         }
+    }
+    
+    private func value<T>(for keyPath: [PropertyType], with transform: (JSON) throws -> T) throws -> T? {
+        return try value(for: keyPath, with: { (json) -> T? in
+            switch json.type {
+            case .null:
+                return nil
+            default:
+                return try transform(json)
+            }
+        })
     }
     
     // MARK: - Value for keypath - single object
@@ -114,20 +129,16 @@ public extension JSONObject where PropertyType.RawValue == String {
     }
     
     // MARK: - Optional methods
-    public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> T? {
-        return try? value(for: keyPath)
+    public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> T? {
+        return try value(for: keyPath, with: T.init)
     }
     
-    public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> [T]? {
-        return try? value(for: keyPath)
+    public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T]? {
+        return try value(for: keyPath) { try Array(json: $0) }
     }
     
-    public func value<T: JSONInitializable>(for keyPath: PropertyType...) -> [String: T]? {
-        return try? value(for: keyPath)
-    }
-    
-    public func value(for keyPath: PropertyType..., with transformer: DateTransformer) -> Date? {
-        return try? value(for: keyPath, with: transformer)
+    public func value(for keyPath: PropertyType..., with transformer: DateTransformer) throws -> Date? {
+        return try value(for: keyPath) { try transformer.date(from: try $0.value()) }
     }
 }
 

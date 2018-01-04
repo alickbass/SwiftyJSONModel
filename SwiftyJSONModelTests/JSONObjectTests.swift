@@ -54,7 +54,7 @@ class JSONObjectTests: XCTestCase {
         let object = try! JSONObject<Key>(json: ["some": ["one": 1, "two": 2]])
         
         XCTAssertEqual(try! object.value(for: .some), ["one": 1, "two": 2])
-        XCTAssertNotNil(object.value(for: .some) as [String: Int]?)
+        XCTAssertNotNil(try! object.value(for: .some) as [String: Int]?)
         
         let otherObject = try! JSONObject<Key>(json: ["some": ["one": "1", "two": "2"]])
         
@@ -67,20 +67,20 @@ class JSONObjectTests: XCTestCase {
         let jsonObject = try! JSONObject<Person.PropertyKey>(json: Data.person.jsonValue)
         let emptyJsonObject = try! JSONObject<Person.PropertyKey>(json: JSON([String: JSON]()))
         
-        XCTAssertEqual(jsonObject.value(for: .firstName) as String?, Data.person.firstName)
-        XCTAssertEqual(jsonObject.value(for: .lastName) as String?, Data.person.lastName)
-        XCTAssertEqual(jsonObject.value(for: .age) as Int?, Data.person.age)
-        XCTAssertEqual(jsonObject.value(for: .isMarried) as Bool?, Data.person.isMarried)
-        XCTAssertEqual(jsonObject.value(for: .height) as Double?, Data.person.height)
-        XCTAssertEqual((jsonObject.value(for: .hobbies) as [String]?)!, Data.person.hobbies!)
+        XCTAssertEqual(try! jsonObject.value(for: .firstName) as String?, Data.person.firstName)
+        XCTAssertEqual(try!jsonObject.value(for: .lastName) as String?, Data.person.lastName)
+        XCTAssertEqual(try!jsonObject.value(for: .age) as Int?, Data.person.age)
+        XCTAssertEqual(try!jsonObject.value(for: .isMarried) as Bool?, Data.person.isMarried)
+        XCTAssertEqual(try!jsonObject.value(for: .height) as Double?, Data.person.height)
+        XCTAssertEqual((try! jsonObject.value(for: .hobbies) as [String]?)!, Data.person.hobbies!)
         
-        XCTAssertNil(jsonObject.value(for: .firstName) as Double?)
-        XCTAssertNil(emptyJsonObject.value(for: .firstName) as String?)
-        XCTAssertNil(emptyJsonObject.value(for: .lastName) as String?)
-        XCTAssertNil(emptyJsonObject.value(for: .age) as Int?)
-        XCTAssertNil(emptyJsonObject.value(for: .isMarried) as Bool?)
-        XCTAssertNil(emptyJsonObject.value(for: .height) as Double?)
-        XCTAssertNil(emptyJsonObject.value(for: .hobbies) as [String]?)
+        XCTAssertThrowsError(try jsonObject.value(for: .firstName) as Double?)
+        XCTAssertNil(try! emptyJsonObject.value(for: .firstName) as String?)
+        XCTAssertNil(try! emptyJsonObject.value(for: .lastName) as String?)
+        XCTAssertNil(try! emptyJsonObject.value(for: .age) as Int?)
+        XCTAssertNil(try! emptyJsonObject.value(for: .isMarried) as Bool?)
+        XCTAssertNil(try! emptyJsonObject.value(for: .height) as Double?)
+        XCTAssertNil(try! emptyJsonObject.value(for: .hobbies) as [String]?)
     }
     
     func testJSONObjectObjectForKey() {
@@ -135,10 +135,10 @@ class JSONObjectTests: XCTestCase {
         
         XCTAssertEqual(try? object.value(for: .first, .second, .third) { $0.intValue }, 3)
         
-        XCTAssertEqual(object.value(for: .first, .second, .third) as Int?, 3)
-        XCTAssertNil(object.value(for: .first, .second, .third) as String?)
-        XCTAssertEqual((object.value(for: .first, .second, .array) as [Int]?)!, [1, 2, 3])
-        XCTAssertNil(object.value(for: .first, .second, .array) as [String]?)
+        XCTAssertEqual(try! object.value(for: .first, .second, .third) as Int?, 3)
+        XCTAssertThrowsError(try object.value(for: .first, .second, .third) as String?)
+        XCTAssertEqual((try! object.value(for: .first, .second, .array) as [Int]?)!, [1, 2, 3])
+        XCTAssertThrowsError(try object.value(for: .first, .second, .array) as [String]?)
     }
     
     func testJSONObjectFlatMap() {
@@ -173,7 +173,9 @@ class JSONObjectTests: XCTestCase {
         let object = try! JSONObject<PropertyKey>(json: dateJSON)
         
         XCTAssertEqual(try! object.value(for: .date, with: format), formatter.date(from: dateString)!)
-        XCTAssertNil(object.value(for: .notProperDate, with: format))
+        XCTAssertThrowsError(try object.value(for: .notProperDate, with: format) as Date?) { error in
+            XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PropertyKey.notProperDate.rawValue, .invalidFormat))
+        }
         XCTAssertThrowsError(try object.value(for: .notProperDate, with: format)) { error in
             XCTAssertEqual(error as? JSONModelError, .invalidValueFor(key: PropertyKey.notProperDate.rawValue, .invalidFormat))
         }
