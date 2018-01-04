@@ -122,9 +122,7 @@ struct JSONDict<T: JSONRepresentable>: JSONRepresentable {
     }
     
     var jsonValue: JSON {
-        var result: [String: JSON] = [:]
-        dict.forEach({ result[$0] = $1.jsonValue })
-        return JSON(dictionary: result)
+        return JSON(dict.mapValues({ $0.jsonValue }))
     }
 }
 
@@ -136,15 +134,13 @@ public extension Dictionary where Key == String, Value: JSONRepresentable {
 
 public extension Dictionary where Key == String, Value: JSONInitializable {
     public init(json: JSON) throws {
-        var result: [String: Value] = [:]
-        try json.dictionaryValue().forEach({ key, json in
+        self = try json.dictionaryValue().reduce(into: [:], { result, item in
             do {
-                result[key] = try Value(json: json)
+                result[item.key] = try Value(json: item.value)
             } catch let error as JSONModelError {
-                throw JSONModelError.invalidValueFor(key: key, error)
+                throw JSONModelError.invalidValueFor(key: item.key, error)
             }
         })
-        self = result
     }
 }
 
