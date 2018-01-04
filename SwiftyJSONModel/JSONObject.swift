@@ -28,14 +28,7 @@ extension JSONObject: JSONRepresentable {
 
 public extension JSONObject where PropertyType.RawValue == String {
     public init(_ jsonDict: [PropertyType: JSONRepresentable?]) {
-        var dict = [String: JSON]()
-        
-        for (key, value) in jsonDict {
-            let jsonValue = value?.jsonValue ?? .null
-            dict[key.rawValue] = jsonValue
-        }
-        
-        json = JSON(dict)
+        json = JSON(jsonDict.reduce(into: [:], { $0[$1.key.rawValue] = $1.value?.jsonValue ?? .null }))
     }
     
     public subscript(key: PropertyType) -> JSON {
