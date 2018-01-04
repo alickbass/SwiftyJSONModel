@@ -53,30 +53,30 @@ public extension JSONObject where PropertyType.RawValue == String {
     
     // MARK: - Value for keypath with custom tranform
     public func value<T>(for keyPath: PropertyType..., with transform: (JSON) throws -> T) throws -> T {
-        return try value(for: keyPath, with: transform)
+        return try value(for: ArraySlice(keyPath), with: transform)
     }
     
     public func value<T>(for keyPath: PropertyType..., with transform: (JSON) throws -> T) throws -> T? {
-        return try value(for: keyPath, with: transform)
+        return try value(for: ArraySlice(keyPath), with: transform)
     }
     
-    private func value<T>(for keyPath: [PropertyType], with transform: (JSON) throws -> T) throws -> T {
+    private func value<T>(for keyPath: ArraySlice<PropertyType>, with transform: (JSON) throws -> T) throws -> T {
         assert(keyPath.isEmpty == false, "KeyPath cannot be empty")
         
-        let key = keyPath[0]
+        let key = keyPath.first!
         do {
             if keyPath.count == 1 {
                 return try transform(self[key])
             } else {
-                let subPath: [PropertyType] = Array(keyPath[1..<keyPath.count])
-                return try JSONObject<PropertyType>(json: self[key]).value(for: subPath, with: transform)
+                let subPath = keyPath[keyPath.startIndex.advanced(by: 1)...]
+                return try JSONObject(json: self[key]).value(for: subPath, with: transform)
             }
         } catch let error as JSONModelError {
             throw JSONModelError.invalidValueFor(key: key.rawValue, error)
         }
     }
     
-    private func value<T>(for keyPath: [PropertyType], with transform: (JSON) throws -> T) throws -> T? {
+    private func value<T>(for keyPath: ArraySlice<PropertyType>, with transform: (JSON) throws -> T) throws -> T? {
         return try value(for: keyPath, with: { (json) -> T? in
             switch json.type {
             case .null:
@@ -89,56 +89,40 @@ public extension JSONObject where PropertyType.RawValue == String {
     
     // MARK: - Value for keypath - single object
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> T {
-        return try value(for: keyPath)
-    }
-    
-    private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> T {
-        return try value(for: keyPath, with: T.init)
+        return try value(for: ArraySlice(keyPath), with: T.init)
     }
     
     // MARK: - Value for keypath - array
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T] {
-        return try value(for: keyPath)
-    }
-    
-    private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [T] {
-        return try value(for: keyPath) { try Array(json: $0) }
+        return try value(for: ArraySlice(keyPath)) { try Array(json: $0) }
     }
     
     // MARK: - Value for keypath - Dictionary
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [String: T] {
-        return try value(for: keyPath)
-    }
-    
-    private func value<T: JSONInitializable>(for keyPath: [PropertyType]) throws -> [String: T] {
-        return try value(for: keyPath) { try Dictionary(json: $0) }
+        return try value(for: ArraySlice(keyPath)) { try Dictionary(json: $0) }
     }
     
     // MARK: - Value for keypath - Date
     public func value(for keyPath: PropertyType..., with transformer: DateTransformer) throws -> Date {
-        return try value(for: keyPath, with: transformer)
-    }
-    
-    private func value(for keyPath: [PropertyType], with transformer: DateTransformer) throws -> Date {
-        return try value(for: keyPath) { try transformer.date(from: try $0.value()) }
+        return try value(for: ArraySlice(keyPath)) { try transformer.date(from: try $0.value()) }
     }
     
     // MARK: - Value for keypath - flattened array
     public func flatMap<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T] {
-        return try value(for: keyPath) { try $0.arrayValue().lazy.flatMap({ try? T(json: $0) }) }
+        return try value(for: ArraySlice(keyPath)) { try $0.arrayValue().lazy.flatMap({ try? T(json: $0) }) }
     }
     
     // MARK: - Optional methods
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> T? {
-        return try value(for: keyPath, with: T.init)
+        return try value(for: ArraySlice(keyPath), with: T.init)
     }
     
     public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [T]? {
-        return try value(for: keyPath) { try Array(json: $0) }
+        return try value(for: ArraySlice(keyPath)) { try Array(json: $0) }
     }
     
     public func value(for keyPath: PropertyType..., with transformer: DateTransformer) throws -> Date? {
-        return try value(for: keyPath) { try transformer.date(from: try $0.value()) }
+        return try value(for: ArraySlice(keyPath)) { try transformer.date(from: try $0.value()) }
     }
 }
 
