@@ -32,7 +32,7 @@ class JSONExtensionTests: XCTestCase {
             XCTAssertEqual(error as? JSONModelError, .invalidElement)
         }
         let json: [JSON] = ["Some"]
-        XCTAssertEqual(try! JSON(array: json).arrayValue(), json)
+        XCTAssertEqual(try! JSON(json).arrayValue(), json)
     }
     
     func testJSONDictionaryValue() {
@@ -41,7 +41,7 @@ class JSONExtensionTests: XCTestCase {
         }
         
         let json: [String: JSON] = ["SomeKey": "SomeValue"]
-        XCTAssertEqual(try! JSON(dictionary: json).dictionaryValue(), json)
+        XCTAssertEqual(try! JSON(json).dictionaryValue(), json)
         
         XCTAssertEqual(["SomeKey": "SomeValue"].jsonRepresantable.jsonValue, ["SomeKey": "SomeValue"])
     }
