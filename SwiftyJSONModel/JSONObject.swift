@@ -191,7 +191,7 @@ public extension JSONObjectRepresentable where PropertyKey.RawValue == String {
 }
 
 // MARK: - JSONObject
-public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitializable {
+public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitializable, JSONRepresentable {
     fileprivate let json: JSON
     
     public init(json: JSON) throws {
@@ -200,9 +200,7 @@ public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitial
         }
         self.json = json
     }
-}
-
-extension JSONObject: JSONRepresentable {
+    
     public var jsonValue: JSON {
         return json
     }
