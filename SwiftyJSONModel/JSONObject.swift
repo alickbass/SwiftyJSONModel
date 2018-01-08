@@ -114,6 +114,10 @@ public extension JSONObject where PropertyType.RawValue == String {
         return try value(for: ArraySlice(keyPath)) { try Array(json: $0) }
     }
     
+    public func value<T: JSONInitializable>(for keyPath: PropertyType...) throws -> [String: T]? {
+        return try value(for: ArraySlice(keyPath)) { try Dictionary(json: $0) }
+    }
+    
     public func value(for keyPath: PropertyType..., with transformer: DateTransformer) throws -> Date? {
         return try value(for: ArraySlice(keyPath)) { try transformer.date(from: try $0.value()) }
     }
