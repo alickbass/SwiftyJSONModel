@@ -53,8 +53,7 @@ public protocol JSONObjectRepresentable: PropertiesContaining, JSONRepresentable
     var dictValue: [PropertyKey: JSONRepresentable?] { get }
 }
 
-public protocol JSONModelType: JSONObjectInitializable, JSONObjectRepresentable {}
-
+public typealias JSONModelType = JSONObjectInitializable & JSONObjectRepresentable
 
 // MARK: - JSONInitializable extensions
 extension JSON: JSONInitializable, JSONRepresentable {
