@@ -29,34 +29,34 @@ public protocol JSONObjectRepresentable: PropertiesContaining, JSONRepresentable
     var dictValue: [PropertyKey: JSONRepresentable?] { get }
 }
 
+public typealias JSONType = JSONInitializable & JSONRepresentable
 public typealias JSONModelType = JSONObjectInitializable & JSONObjectRepresentable
 
 // MARK: - JSONInitializable extensions
-extension JSON: JSONInitializable, JSONRepresentable {
+extension JSON: JSONType {
     public init(json: JSON) { self = json }
     public var jsonValue: JSON { return self }
 }
 
-extension String: JSONInitializable, JSONRepresentable {
+extension String: JSONType {
     public init(json: JSON) throws { self = try json.value() }
     public var jsonValue: JSON { return JSON(self) }
 }
 
-extension Bool: JSONInitializable, JSONRepresentable {
+extension Bool: JSONType {
     public init(json: JSON) throws { self = try json.value() }
     public var jsonValue: JSON { return JSON(self) }
 }
 
-extension Int: JSONInitializable, JSONRepresentable {
+extension Int: JSONType {
     public init(json: JSON) throws { self = try json.value() }
     public var jsonValue: JSON { return JSON(self) }
 }
 
-extension Double: JSONInitializable, JSONRepresentable {
+extension Double: JSONType {
     public init(json: JSON) throws { self = try json.value() }
     public var jsonValue: JSON { return JSON(self) }
 }
-
 
 // MARK: - Handy extensions
 struct JSONArray<T: JSONRepresentable>: JSONRepresentable {
@@ -144,7 +144,7 @@ public extension JSON {
 }
 
 // MARK: - JSONString a fix for string enums
-public protocol JSONString: RawRepresentable, JSONInitializable, JSONRepresentable {
+public protocol JSONString: RawRepresentable, JSONType {
     init?(rawValue: String)
     var rawValue: String { get }
 }
