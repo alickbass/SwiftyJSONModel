@@ -9,30 +9,6 @@
 import Foundation
 import SwiftyJSON
 
-// MARK: - Protocols
-public protocol JSONType {
-    var bool: Bool? { get }
-    var int: Int? { get }
-    var double: Double? { get }
-    var string: String? { get }
-    var array: [Self]? { get }
-    var dictionary: [String: Self]? { get }
-    
-    init(bool: Bool)
-    init(int: Int)
-    init(double: Double)
-    init(string: String)
-    init(array: [Self])
-    init(dictionary: [String: Self])
-    
-    func value() throws -> Bool
-    func value() throws -> Int
-    func value() throws -> Double
-    func value() throws -> String
-    func arrayValue() throws -> [Self]
-    func dictionaryValue() throws -> [String: Self]
-}
-
 public protocol JSONInitializable {
     init(json: JSON) throws
 }
@@ -63,22 +39,22 @@ extension JSON: JSONInitializable, JSONRepresentable {
 
 extension String: JSONInitializable, JSONRepresentable {
     public init(json: JSON) throws { self = try json.value() }
-    public var jsonValue: JSON { return JSON(string: self) }
+    public var jsonValue: JSON { return JSON(self) }
 }
 
 extension Bool: JSONInitializable, JSONRepresentable {
     public init(json: JSON) throws { self = try json.value() }
-    public var jsonValue: JSON { return JSON(bool: self) }
+    public var jsonValue: JSON { return JSON(self) }
 }
 
 extension Int: JSONInitializable, JSONRepresentable {
     public init(json: JSON) throws { self = try json.value() }
-    public var jsonValue: JSON { return JSON(int: self) }
+    public var jsonValue: JSON { return JSON(self) }
 }
 
 extension Double: JSONInitializable, JSONRepresentable {
     public init(json: JSON) throws { self = try json.value() }
-    public var jsonValue: JSON { return JSON(double: self) }
+    public var jsonValue: JSON { return JSON(self) }
 }
 
 
@@ -150,7 +126,7 @@ public extension Date {
 }
 
 // MARK: - JSONType
-public extension JSONType {
+public extension JSON {
     public func value() throws -> Bool {
         guard let boolValue = bool else { throw JSONModelError.invalidElement }
         return boolValue
@@ -171,12 +147,12 @@ public extension JSONType {
         return stringValue
     }
     
-    public func arrayValue() throws -> [Self] {
+    public func arrayValue() throws -> [JSON] {
         guard let arrayValue = array else { throw JSONModelError.invalidElement }
         return arrayValue
     }
     
-    public func dictionaryValue() throws -> [String: Self] {
+    public func dictionaryValue() throws -> [String: JSON] {
         guard let dictValue = dictionary else { throw JSONModelError.invalidElement }
         return dictValue
     }
@@ -200,15 +176,6 @@ public extension JSONString {
     }
 }
 
-extension JSON: JSONType {
-    public init(bool: Bool) { self.init(bool) }
-    public init(int: Int) { self.init(int) }
-    public init(double: Double) { self.init(double) }
-    public init(string: String) { self.init(string) }
-    public init(array: [JSON]) { self.init(array) }
-    public init(dictionary: [String: JSON]) { self.init(dictionary) }
-}
-
 // MARK: - JSON Models
 public extension JSONObjectInitializable where PropertyKey.RawValue == String {
     init(json: JSON) throws {
@@ -224,7 +191,7 @@ public extension JSONObjectRepresentable where PropertyKey.RawValue == String {
 }
 
 // MARK: - JSONObject
-public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitializable {
+public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitializable, JSONRepresentable {
     fileprivate let json: JSON
     
     public init(json: JSON) throws {
@@ -233,9 +200,7 @@ public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitial
         }
         self.json = json
     }
-}
-
-extension JSONObject: JSONRepresentable {
+    
     public var jsonValue: JSON {
         return json
     }
@@ -354,9 +319,7 @@ extension String: DateTransformer {
     }
     
     public func date(from string: String) throws -> Date {
-        guard let date = formatter().date(from: string) else {
-            throw JSONModelError.invalidFormat
-        }
+        guard let date = formatter().date(from: string) else { throw JSONModelError.invalidFormat }
         return date
     }
     
@@ -366,14 +329,12 @@ extension String: DateTransformer {
 }
 
 // MARK: - JSONModelError
-public indirect enum JSONModelError: Error {
+public indirect enum JSONModelError: Error, Equatable, CustomStringConvertible {
     case jsonIsNotAnObject
     case invalidElement
     case invalidFormat
     case invalidValueFor(key: String, JSONModelError)
-}
-
-extension JSONModelError: Equatable {
+    
     public static func == (lhs: JSONModelError, rhs: JSONModelError) -> Bool {
         switch (lhs, rhs) {
         case (.jsonIsNotAnObject, .jsonIsNotAnObject), (.invalidElement, .invalidElement), (.invalidFormat, .invalidFormat):
@@ -384,9 +345,7 @@ extension JSONModelError: Equatable {
             return false
         }
     }
-}
 
-extension JSONModelError: CustomStringConvertible {
     public var description: String {
         switch self {
         case .jsonIsNotAnObject:
