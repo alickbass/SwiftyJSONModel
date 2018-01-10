@@ -29,51 +29,44 @@ public protocol JSONObjectRepresentable: PropertiesContaining, JSONRepresentable
     var dictValue: [PropertyKey: JSONRepresentable?] { get }
 }
 
+public typealias JSONType = JSONInitializable & JSONRepresentable
 public typealias JSONModelType = JSONObjectInitializable & JSONObjectRepresentable
 
 // MARK: - JSONInitializable extensions
-extension JSON: JSONInitializable, JSONRepresentable {
+extension JSON: JSONType {
     public init(json: JSON) { self = json }
     public var jsonValue: JSON { return self }
 }
 
-extension String: JSONInitializable, JSONRepresentable {
+extension String: JSONType {
     public init(json: JSON) throws { self = try json.value() }
     public var jsonValue: JSON { return JSON(self) }
 }
 
-extension Bool: JSONInitializable, JSONRepresentable {
+extension Bool: JSONType {
     public init(json: JSON) throws { self = try json.value() }
     public var jsonValue: JSON { return JSON(self) }
 }
 
-extension Int: JSONInitializable, JSONRepresentable {
+extension Int: JSONType {
     public init(json: JSON) throws { self = try json.value() }
     public var jsonValue: JSON { return JSON(self) }
 }
 
-extension Double: JSONInitializable, JSONRepresentable {
+extension Double: JSONType {
     public init(json: JSON) throws { self = try json.value() }
     public var jsonValue: JSON { return JSON(self) }
 }
-
 
 // MARK: - Handy extensions
 struct JSONArray<T: JSONRepresentable>: JSONRepresentable {
     let array: [T]
-    
-    init(_ array: [T]) {
-        self.array = array
-    }
-    
-    var jsonValue: JSON {
-        return JSON(array.map({ $0.jsonValue }))
-    }
+    var jsonValue: JSON { return JSON(array.map({ $0.jsonValue })) }
 }
 
 public extension Array where Element: JSONRepresentable {
     public var jsonRepresantable: JSONRepresentable {
-        return JSONArray<Element>(self)
+        return JSONArray<Element>(array: self)
     }
 }
 
@@ -91,19 +84,12 @@ public extension Array where Element: JSONInitializable {
 
 struct JSONDict<T: JSONRepresentable>: JSONRepresentable {
     let dict: [String: T]
-    
-    init(_ dict: [String: T]) {
-        self.dict = dict
-    }
-    
-    var jsonValue: JSON {
-        return JSON(dict.mapValues({ $0.jsonValue }))
-    }
+    var jsonValue: JSON { return JSON(dict.mapValues({ $0.jsonValue })) }
 }
 
 public extension Dictionary where Key == String, Value: JSONRepresentable {
     public var jsonRepresantable: JSONRepresentable {
-        return JSONDict<Value>(self)
+        return JSONDict<Value>(dict: self)
     }
 }
 
@@ -125,7 +111,6 @@ public extension Date {
     }
 }
 
-// MARK: - JSONType
 public extension JSON {
     public func value() throws -> Bool {
         guard let boolValue = bool else { throw JSONModelError.invalidElement }
@@ -158,35 +143,30 @@ public extension JSON {
     }
 }
 
-public protocol JSONString: RawRepresentable, JSONInitializable, JSONRepresentable {
+// MARK: - JSONString a fix for string enums
+public protocol JSONString: RawRepresentable, JSONType {
     init?(rawValue: String)
     var rawValue: String { get }
 }
 
 public extension JSONString {
     public init(json: JSON) throws {
-        guard let object = Self.init(rawValue: try String(json: json) ) else {
-            throw JSONModelError.invalidElement
-        }
+        guard let object = Self.init(rawValue: try String(json: json) ) else { throw JSONModelError.invalidElement }
         self = object
     }
     
-    public var jsonValue: JSON {
-        return rawValue.jsonValue
-    }
+    public var jsonValue: JSON { return rawValue.jsonValue }
 }
 
-// MARK: - JSON Models
 public extension JSONObjectInitializable where PropertyKey.RawValue == String {
     init(json: JSON) throws {
-        let jsonObject = try JSONObject<PropertyKey>(json: json)
-        try self.init(object: jsonObject)
+        try self.init(object: try JSONObject(json: json))
     }
 }
 
 public extension JSONObjectRepresentable where PropertyKey.RawValue == String {
     var jsonValue: JSON {
-        return JSONObject<PropertyKey>(dictValue).jsonValue
+        return JSONObject(dictValue).jsonValue
     }
 }
 
@@ -195,9 +175,7 @@ public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitial
     fileprivate let json: JSON
     
     public init(json: JSON) throws {
-        guard json.type == .dictionary else {
-            throw JSONModelError.jsonIsNotAnObject
-        }
+        guard json.type == .dictionary else { throw JSONModelError.jsonIsNotAnObject }
         self.json = json
     }
     
@@ -218,7 +196,7 @@ public extension JSONObject where PropertyType.RawValue == String {
     // MARK: - Throwable methods
     public func object(for key: PropertyType) throws -> JSONObject<PropertyType> {
         do {
-            return try JSONObject<PropertyType>(json: self[key])
+            return try JSONObject(json: self[key])
         } catch let error as JSONModelError {
             throw JSONModelError.invalidValueFor(key: key.rawValue, error)
         }
@@ -313,9 +291,8 @@ extension String: DateTransformer {
     private static let dateFormatter = DateFormatter()
     
     private func formatter() -> DateFormatter {
-        let formatter = String.dateFormatter
-        formatter.dateFormat = self
-        return formatter
+        String.dateFormatter.dateFormat = self
+        return String.dateFormatter
     }
     
     public func date(from string: String) throws -> Date {
