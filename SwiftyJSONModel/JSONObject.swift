@@ -18,7 +18,7 @@ public protocol JSONRepresentable {
 }
 
 public protocol PropertiesContaining {
-    associatedtype PropertyKey: RawRepresentable, Hashable
+    associatedtype PropertyKey: RawRepresentable, Hashable where PropertyKey.RawValue == String
 }
 
 public protocol JSONObjectInitializable: PropertiesContaining, JSONInitializable {
@@ -66,7 +66,7 @@ struct JSONArray<T: JSONRepresentable>: JSONRepresentable {
 
 public extension Array where Element: JSONRepresentable {
     public var jsonRepresantable: JSONRepresentable {
-        return JSONArray<Element>(array: self)
+        return JSONArray(array: self)
     }
 }
 
@@ -158,20 +158,20 @@ public extension JSONString {
     public var jsonValue: JSON { return rawValue.jsonValue }
 }
 
-public extension JSONObjectInitializable where PropertyKey.RawValue == String {
+public extension JSONObjectInitializable {
     init(json: JSON) throws {
         try self.init(object: try JSONObject(json: json))
     }
 }
 
-public extension JSONObjectRepresentable where PropertyKey.RawValue == String {
+public extension JSONObjectRepresentable {
     var jsonValue: JSON {
         return JSONObject(dictValue).jsonValue
     }
 }
 
 // MARK: - JSONObject
-public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitializable, JSONRepresentable {
+public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitializable, JSONRepresentable where PropertyType.RawValue == String {
     fileprivate let json: JSON
     
     public init(json: JSON) throws {
@@ -179,14 +179,12 @@ public struct JSONObject<PropertyType: RawRepresentable & Hashable>: JSONInitial
         self.json = json
     }
     
-    public var jsonValue: JSON {
-        return json
-    }
-}
-
-public extension JSONObject where PropertyType.RawValue == String {
     public init(_ jsonDict: [PropertyType: JSONRepresentable?]) {
         json = JSON(jsonDict.reduce(into: [:], { $0[$1.key.rawValue] = $1.value?.jsonValue ?? .null }))
+    }
+    
+    public var jsonValue: JSON {
+        return json
     }
     
     public subscript(key: PropertyType) -> JSON {
